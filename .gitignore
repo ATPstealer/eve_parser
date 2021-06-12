@@ -5,3 +5,5 @@ eve_parser/__pycache__/
 db.sqlite3
 .idea/
 venv/
+__pycache__/
+eve_parser/migrations
