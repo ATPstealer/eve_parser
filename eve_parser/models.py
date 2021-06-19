@@ -9,6 +9,7 @@ class Market(models.Model):
     parse_time = models.DateTimeField(
         auto_now=True
     )
+    region_id = models.IntegerField()
 
     duration = models.IntegerField()
     is_buy_order = models.BooleanField()
