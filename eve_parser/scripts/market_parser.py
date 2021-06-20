@@ -1,7 +1,6 @@
 from eve_parser.include.parser import Parser
 from eve_parser.models import Market, Regions
-import json
-import asyncio
+import json, asyncio, datetime
 
 
 def run():
@@ -34,20 +33,22 @@ async def paginator(region):
 
 def insert_in_base(market_data, region):
     for order in market_data:
-        exist = 0
-        exist_markets = Market.objects.values_list('order_id')
-        for exist_market in exist_markets:
-            if order['order_id'] == exist_market[0]:
-                exist = 1
-                break
-
-        print(str(region) + " " + str(order['order_id']))
-
-        if exist == 0:
-            market = Market.objects.create(order_id=order['order_id'], region_id=region,
-                                           duration=order['duration'], is_buy_order=order['is_buy_order'],
-                                           issued=order['issued'], location_id=order['location_id'],
-                                           min_volume=order['min_volume'], price=order['price'], range=order['range'],
-                                           system_id=order['system_id'], type_id=order['type_id'],
-                                           volume_total=order['volume_total'], volume_remain=order['volume_remain'])
+        m = list(Market.objects.filter(order_id=order["order_id"]))
+        if len(m) < 1:
+            market = Market.objects.create(
+                order_id=order['order_id'], region_id=region, duration=order['duration'],
+                is_buy_order=order['is_buy_order'], issued=order['issued'], location_id=order['location_id'],
+                min_volume=order['min_volume'], price=order['price'], range=order['range'],system_id=order['system_id'],
+                type_id=order['type_id'], volume_total=order['volume_total'], volume_remain=order['volume_remain'])
             market.save()
+            print("Create: ", end='')
+        else:
+            market = Market.objects.filter(order_id=order["order_id"]).update(
+                parse_time=datetime.datetime.now(datetime.timezone.utc),
+                duration=order['duration'], is_buy_order=order['is_buy_order'], issued=order['issued'],
+                location_id=order['location_id'], min_volume=order['min_volume'], price=order['price'],
+                range=order['range'], system_id=order['system_id'], type_id=order['type_id'],
+                volume_total=order['volume_total'], volume_remain=order['volume_remain'])
+            print("Update: ", end='')
+
+        print(str(region) + " " + str(order["order_id"]))

@@ -16,7 +16,9 @@ class Market(models.Model):
     issued = models.DateTimeField()
     location_id = models.IntegerField()
     min_volume = models.IntegerField()
-    order_id = models.IntegerField()
+    order_id = models.IntegerField(
+        unique=True
+    )
     price = models.FloatField()
     range = models.CharField(
         max_length=20
