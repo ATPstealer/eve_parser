@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Regions(models.Model):
-    region_id = models.IntegerField()
+    region_id = models.BigIntegerField()
 
 
 class Market(models.Model):
@@ -12,21 +12,21 @@ class Market(models.Model):
     region_id = models.IntegerField()
 
     duration = models.IntegerField()
-    is_buy_order = models.BooleanField()
+    is_buy_order = models.BigIntegerField()
     issued = models.DateTimeField()
-    location_id = models.IntegerField()
-    min_volume = models.IntegerField()
-    order_id = models.IntegerField(
+    location_id = models.BigIntegerField()
+    min_volume = models.BigIntegerField()
+    order_id = models.BigIntegerField(
         unique=True
     )
     price = models.FloatField()
     range = models.CharField(
         max_length=20
     )
-    system_id = models.IntegerField()
+    system_id = models.BigIntegerField()
     type_id = models.IntegerField()
-    volume_remain = models.IntegerField()
-    volume_total = models.IntegerField()
+    volume_remain = models.BigIntegerField()
+    volume_total = models.BigIntegerField()
 
 
 class Types(models.Model):

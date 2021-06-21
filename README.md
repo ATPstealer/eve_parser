@@ -3,6 +3,6 @@ python manage.py makemigrations
 python manage.py migrate
 
 ### parse scripts
-python manage.py runscript regions_parser
-python manage.py runscript market_parser
-python manage.py runscript types_parser
+python manage.py runscript parser_regions
+python manage.py runscript parser_market
+python manage.py runscript parser_types
