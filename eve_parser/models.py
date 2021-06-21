@@ -5,6 +5,12 @@ class Regions(models.Model):
     region_id = models.BigIntegerField()
 
 
+class Types(models.Model):
+    type_id = models.IntegerField(
+        unique=True
+    )
+
+
 class Market(models.Model):
     parse_time = models.DateTimeField(
         auto_now=True
@@ -29,7 +35,13 @@ class Market(models.Model):
     volume_total = models.BigIntegerField()
 
 
-class Types(models.Model):
-    type_id = models.IntegerField(
-        unique=True
-    )
+class MarketHistory(models.Model):
+    region_id = models.IntegerField()
+    type_id = models.IntegerField()
+    date = models.DateField()
+    average = models.FloatField()
+    highest = models.FloatField()
+    lowest = models.FloatField()
+    order_count = models.IntegerField()
+    volume = models.BigIntegerField()
+

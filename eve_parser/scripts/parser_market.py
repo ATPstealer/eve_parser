@@ -1,14 +1,18 @@
 from eve_parser.include.parser import Parser
 from eve_parser.models import Market, Regions
-import json, datetime
+import json
+from datetime import datetime, timezone, timedelta
 
 
 def run(*args):
+    start = datetime.now()
     if len(args) == 0:
         for region in Regions.objects.values_list('region_id', flat=True):
             paginator(region)
     else:
         paginator(args[0])
+    print("start at: %s\nend at: %s" % (start, datetime.now()))
+    clear_market()
 
 
 def paginator(region):
@@ -35,7 +39,7 @@ def insert_in_base(market_data, region):
             print("Create: ", end='')
         else:
             market = Market.objects.filter(order_id=order["order_id"]).update(
-                parse_time=datetime.datetime.now(datetime.timezone.utc),
+                parse_time=datetime.now(timezone.utc),
                 duration=order['duration'], is_buy_order=order['is_buy_order'], issued=order['issued'],
                 location_id=order['location_id'], min_volume=order['min_volume'], price=order['price'],
                 range=order['range'], system_id=order['system_id'], type_id=order['type_id'],
@@ -43,4 +47,11 @@ def insert_in_base(market_data, region):
             print("Update: ", end='')
 
         print(str(region) + " " + str(order["order_id"]))
+
+
+def clear_market():
+    orders_for_delete = Market.objects.filter(parse_time__lte=datetime.now(timezone.utc) - timedelta(day=1))
+    for order in orders_for_delete:
+        print("Delete: " + str(order.order_id))
+        order.delete()
 
