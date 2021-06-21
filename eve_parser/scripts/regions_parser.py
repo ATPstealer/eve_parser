@@ -22,6 +22,3 @@ def run():
 
 def clear_regions():
     Regions.objects.all().delete()
-
-
-

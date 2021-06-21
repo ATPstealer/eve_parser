@@ -27,3 +27,9 @@ class Market(models.Model):
     type_id = models.IntegerField()
     volume_remain = models.IntegerField()
     volume_total = models.IntegerField()
+
+
+class Types(models.Model):
+    type_id = models.IntegerField(
+        unique=True
+    )
