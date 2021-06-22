@@ -5,7 +5,6 @@ from datetime import datetime, timezone, timedelta
 
 
 def run(*args):
-    clear_market()
     start = datetime.now()
     if len(args) == 0:
         for region in Regions.objects.values_list('region_id', flat=True):
