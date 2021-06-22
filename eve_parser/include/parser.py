@@ -20,7 +20,11 @@ class Parser:
             else:
                 if r.status_code == 200 or r.status_code == 404:
                     return r.text
+                elif r.status_code == 420:
+                    print("Response code: " + str(r.status_code))
+                    time.sleep(60)
                 else:
                     print("Response code: " + str(r.status_code))
                     time.sleep(5)
+
         return r.text

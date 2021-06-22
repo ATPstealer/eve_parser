@@ -1,21 +1,36 @@
+import time
+
 from eve_parser.include.parser import Parser
 from eve_parser.models import Types, Regions, MarketHistory
 import json
 from datetime import datetime, timezone
+import threading
+import django
 
 
 def run():
+    django.setup()
     start = datetime.now()
-    parser = Parser()
+    proc = dict()
     for region in Regions.objects.values_list("region_id"):
-        for item_type in Types.objects.values_list("type_id"):
-            dict_get_args = {"type_id": item_type[0]}
-            market_history_json = parser.evetech_req("/markets/" + str(region[0]) + "/history/", dict_get_args)
-            if "error" in market_history_json:
-                continue
-            print(market_history_json)
-            insert_in_base(json.loads(market_history_json), region[0], item_type[0])
+        proc['region'] = threading.Thread(target=parse_region_history, args=(region, ))
+        proc['region'].start()
+        time.sleep(60)
+    for p in proc:
+        print("Region thread: " + str(p))
+        p.join()
     print("start at: %s\nend at: %s" % (start, datetime.now()))
+
+
+def parse_region_history(region):
+    parser = Parser()
+    print("Region parse start: " + str(region[0]))
+    for item_type in Types.objects.values_list("type_id"):
+        dict_get_args = {"type_id": item_type[0]}
+        market_history_json = parser.evetech_req("/markets/" + str(region[0]) + "/history/", dict_get_args)
+        if "error" in market_history_json:
+            continue
+        insert_in_base(json.loads(market_history_json), region[0], item_type[0])
 
 
 def insert_in_base(market_history_data, region, item_type):
