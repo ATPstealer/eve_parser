@@ -1,24 +1,13 @@
-import time
-
 from eve_parser.include.parser import Parser
 from eve_parser.models import Types, Regions, MarketHistory
 import json
-from datetime import datetime, timezone
-import threading
-import django
+from datetime import datetime
 
 
 def run():
-    django.setup()
     start = datetime.now()
-    proc = dict()
     for region in Regions.objects.values_list("region_id"):
-        proc['region'] = threading.Thread(target=parse_region_history, args=(region, ))
-        proc['region'].start()
-        time.sleep(60)
-    for p in proc:
-        print("Region thread: " + str(p))
-        p.join()
+        parse_region_history(region)
     print("start at: %s\nend at: %s" % (start, datetime.now()))
 
 

@@ -5,6 +5,7 @@ from datetime import datetime, timezone, timedelta
 
 
 def run(*args):
+    clear_market()
     start = datetime.now()
     if len(args) == 0:
         for region in Regions.objects.values_list('region_id', flat=True):
@@ -50,7 +51,7 @@ def insert_in_base(market_data, region):
 
 
 def clear_market():
-    orders_for_delete = Market.objects.filter(parse_time__lte=datetime.now(timezone.utc) - timedelta(day=1))
+    orders_for_delete = Market.objects.filter(parse_time__lte=datetime.now(timezone.utc) - timedelta(days=1))
     for order in orders_for_delete:
         print("Delete: " + str(order.order_id))
         order.delete()
