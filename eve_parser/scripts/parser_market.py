@@ -23,6 +23,7 @@ def paginator(region):
         if 'error' in market_json:
             print(market_json)
             break
+        print("Parse market in " + str(region) + " page " + str(page))
         insert_in_base(json.loads(market_json), region)
 
 
@@ -36,7 +37,6 @@ def insert_in_base(market_data, region):
                 min_volume=order['min_volume'], price=order['price'], range=order['range'],system_id=order['system_id'],
                 type_id=order['type_id'], volume_total=order['volume_total'], volume_remain=order['volume_remain'])
             market.save()
-            print("Create: ", end='')
         else:
             market = Market.objects.filter(order_id=order["order_id"]).update(
                 parse_time=datetime.now(timezone.utc),
@@ -44,9 +44,6 @@ def insert_in_base(market_data, region):
                 location_id=order['location_id'], min_volume=order['min_volume'], price=order['price'],
                 range=order['range'], system_id=order['system_id'], type_id=order['type_id'],
                 volume_total=order['volume_total'], volume_remain=order['volume_remain'])
-            print("Update: ", end='')
-
-        print(str(region) + " " + str(order["order_id"]))
 
 
 def clear_market():
