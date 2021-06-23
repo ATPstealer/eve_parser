@@ -12,7 +12,7 @@ class Parser:
         get_args = ""
         for key in dict_get_args:
             get_args += "&" + key + "=" + str(dict_get_args[key])
-        for k in range(1, 4):
+        for k in range(1, 11):
             try:
                 r = requests.get(self.config.esi + section + self.config.server + get_args)
             except requests.exceptions.RequestException as e:
@@ -22,9 +22,9 @@ class Parser:
                     return r.text
                 elif r.status_code == 420:
                     print("Response code: " + str(r.status_code))
-                    time.sleep(60)
+                    time.sleep(k*10)
                 else:
                     print("Response code: " + str(r.status_code))
-                    time.sleep(5)
+                    time.sleep(k*2)
 
         return r.text

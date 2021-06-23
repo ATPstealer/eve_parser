@@ -36,3 +36,4 @@ def insert_in_base(market_history_data, region, item_type):
                 highest=market_history_day['highest'], lowest=market_history_day['lowest'],
                 order_count=market_history_day['order_count'], volume=market_history_day['volume'])
             market_history.save()
+
