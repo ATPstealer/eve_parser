@@ -6,11 +6,12 @@ from datetime import datetime
 
 def run(*args):
     start = datetime.now()
+    print(args)
     if len(args) == 0:
         for region in Regions.objects.values_list("region_id"):
             parse_region_history(region)
     else:
-        parse_region_history(args[0])
+        parse_region_history(args)
     print("start at: %s\nend at: %s" % (start, datetime.now()))
 
 
