@@ -52,3 +52,7 @@ class MarketHistory(models.Model):
     order_count = models.IntegerField()
     volume = models.BigIntegerField()
 
+
+class MarketHistoryParser(models.Model):
+    region_id = models.IntegerField()
+    type_id = models.IntegerField()
