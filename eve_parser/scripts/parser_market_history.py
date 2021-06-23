@@ -27,8 +27,7 @@ def parse_region_history(region):
 
 def insert_in_base(market_history_data, region, item_type):
     print("Item: " + str(region) + " " + str(item_type))
-    market_history_parser = MarketHistoryParser.objects.create(region_id=region, type_id=item_type)
-    market_history_parser.save()
+    MarketHistoryParser.objects.filter(id=1).update(region_id=region, type_id=item_type)
     for market_history_day in market_history_data:
         m = list(MarketHistory.objects.filter(region_id=region, type_id=item_type, date=market_history_day['date']))
         if len(m) == 0:
