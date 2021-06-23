@@ -23,7 +23,8 @@ class Market(models.Model):
     location_id = models.BigIntegerField()
     min_volume = models.BigIntegerField()
     order_id = models.BigIntegerField(
-        unique=True
+        unique=True,
+        db_index=True
     )
     price = models.FloatField()
     range = models.CharField(
@@ -36,9 +37,15 @@ class Market(models.Model):
 
 
 class MarketHistory(models.Model):
-    region_id = models.IntegerField()
-    type_id = models.IntegerField()
-    date = models.DateField()
+    region_id = models.IntegerField(
+        db_index=True
+    )
+    type_id = models.IntegerField(
+        db_index=True
+    )
+    date = models.DateField(
+        db_index=True
+    )
     average = models.FloatField()
     highest = models.FloatField()
     lowest = models.FloatField()

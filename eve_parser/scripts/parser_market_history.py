@@ -6,7 +6,6 @@ from datetime import datetime
 
 def run(*args):
     start = datetime.now()
-    print(args)
     if len(args) == 0:
         for region in Regions.objects.values_list("region_id"):
             parse_region_history(region)
