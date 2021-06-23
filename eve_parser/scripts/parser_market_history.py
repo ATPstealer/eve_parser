@@ -4,10 +4,13 @@ import json
 from datetime import datetime
 
 
-def run():
+def run(*args):
     start = datetime.now()
-    for region in Regions.objects.values_list("region_id"):
-        parse_region_history(region)
+    if len(args) == 0:
+        for region in Regions.objects.values_list("region_id"):
+            parse_region_history(region)
+    else:
+        parse_region_history(args[0])
     print("start at: %s\nend at: %s" % (start, datetime.now()))
 
 
