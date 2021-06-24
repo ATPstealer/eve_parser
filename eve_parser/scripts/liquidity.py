@@ -14,15 +14,13 @@ def run():
 
 
 def liquidity_calc(region_id, type_id, month_ago, market_history):
-    days = 0
     volume = 0
     for market_history_day in market_history:
-        days += 1
         volume += market_history_day.volume
         last_average_price = market_history_day.average
         last_date = market_history_day.date
-    if days != 0:
-        day_range = last_date - month_ago.date()
+    day_range = last_date - month_ago.date()
+    if day_range != 0:
         month_avg_volume = volume / day_range.days
         print(region_id, type_id, month_avg_volume, last_average_price, month_avg_volume * last_average_price/1000000000)
         insert_in_base(region_id, type_id, month_avg_volume, last_average_price,
