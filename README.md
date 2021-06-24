@@ -1,6 +1,6 @@
 ## Django
 python manage.py makemigrations <br>
-python manage.py migrate
+python manage.py migrate <br>
 
 ### parse scripts
 python manage.py runscript parser_regions <br>
@@ -12,3 +12,4 @@ python3 manage.py runscript parser_regions <br>
 python3 manage.py runscript parser_market <br>
 python3 manage.py runscript parser_types <br>
 python3 manage.py runscript parser_market_history <br>
+python3 manage.py runscript liquidity <br>

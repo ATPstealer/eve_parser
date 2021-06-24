@@ -1,6 +1,7 @@
 import operator
 from eve_parser.models import MarketHistory, Types, Regions, Liquidity
 from datetime import datetime, timedelta
+from eve_parser.include.parser import Parser
 
 
 def run():
@@ -24,6 +25,8 @@ def liquidity_calc(region_id, type_id, market_history):
         print(region_id, type_id, month_avg_volume, last_average_price, month_avg_volume * last_average_price/1000000000)
         insert_in_base(region_id, type_id, month_avg_volume, last_average_price,
                        month_avg_volume * last_average_price/1000000000)
+        parser = Parser()
+        parser.parser_status("Liquidity calculation", "item_type", region_id, type_id)
 
 
 def insert_in_base(region_id, type_id, month_avg_volume, last_average_price, month_turnover):
