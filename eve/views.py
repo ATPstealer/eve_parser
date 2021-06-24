@@ -1,5 +1,8 @@
 from django.http import HttpResponse, Http404
+from django.shortcuts import redirect
 import datetime
+
+from eve_parser.views import stats
 
 
 def hello(request):
@@ -15,3 +18,7 @@ def current_datetime(request):
 def hours_ahead(request, num):
     html = "it %s" % (num)
     return HttpResponse(html)
+
+
+def redirect_pars(request):
+    return redirect(stats)

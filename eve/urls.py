@@ -18,6 +18,7 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
+    path('', views.redirect_pars),
     path('admin/', admin.site.urls),
     path('hello/', views.hello),
     path('time/', views.current_datetime),
