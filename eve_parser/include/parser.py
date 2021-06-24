@@ -13,7 +13,7 @@ class Parser:
         get_args = ""
         for key in dict_get_args:
             get_args += "&" + key + "=" + str(dict_get_args[key])
-        for k in range(1, 31):
+        for k in range(1, 360):
             try:
                 r = requests.get(self.config.esi + section + self.config.server + get_args)
             except requests.exceptions.RequestException as e:
