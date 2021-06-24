@@ -10,18 +10,20 @@ def run():
             month_ago = datetime.utcnow() - timedelta(days=30)
             market_history = MarketHistory.objects.filter(region_id=region[0], type_id=item_type[0], date__gte=month_ago.strftime("%Y-%m-%d"))
             market_history = sorted(market_history, key=operator.attrgetter('date'))
-            liquidity_calc(region[0], item_type[0], market_history)
+            liquidity_calc(region[0], item_type[0], month_ago, market_history)
 
 
-def liquidity_calc(region_id, type_id, market_history):
+def liquidity_calc(region_id, type_id, month_ago, market_history):
     days = 0
     volume = 0
     for market_history_day in market_history:
         days += 1
         volume += market_history_day.volume
         last_average_price = market_history_day.average
+        last_date = market_history_day.date
     if days != 0:
-        month_avg_volume = volume / days
+        day_range = last_date - month_ago.date()
+        month_avg_volume = volume / day_range.days
         print(region_id, type_id, month_avg_volume, last_average_price, month_avg_volume * last_average_price/1000000000)
         insert_in_base(region_id, type_id, month_avg_volume, last_average_price,
                        month_avg_volume * last_average_price/1000000000)
