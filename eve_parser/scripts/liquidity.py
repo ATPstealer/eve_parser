@@ -39,4 +39,4 @@ def insert_in_base(region_id, type_id, month_avg_volume, last_average_price, mon
     else:
         liquidity = Liquidity.objects.filter(region_id=region_id, type_id=type_id).update(
             region_id=region_id, type_id=type_id, month_volume=month_avg_volume,
-            price=last_average_price, month_turnover=mount_turnover)
+            price=last_average_price, month_turnover=month_turnover)
