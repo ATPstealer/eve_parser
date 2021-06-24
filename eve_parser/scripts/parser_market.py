@@ -18,6 +18,7 @@ def run(*args):
 def paginator(region):
     parser = Parser()
     for page in range(1, 10000):
+        parser.parser_status("Market", "page", region, page)
         dict_get_args = {"order_type": "all", "page": page}
         market_json = parser.evetech_req("/markets/" + str(region) + "/orders/", dict_get_args)
         if 'error' in market_json:

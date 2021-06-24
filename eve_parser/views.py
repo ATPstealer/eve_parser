@@ -1,9 +1,10 @@
-# Create your views here.
-from django.http import HttpResponse
-from eve_parser.include.parser import Parser
+from django.shortcuts import render
+from eve_parser.models import ParserStatus
 
 
-def eve_pars(request):
-    parser = Parser()
-    parse_json = parser.evetech_req("/universe/regions/")
-    return HttpResponse(parse_json)
+def stats(request):
+    p = ParserStatus.objects.values_list("name", "describe", "region_id", "now_parse")
+    return render(request, 'eve_parser/stats.html', context={'statistics': p})
+
+
+

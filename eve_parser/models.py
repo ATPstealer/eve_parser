@@ -53,6 +53,12 @@ class MarketHistory(models.Model):
     volume = models.BigIntegerField()
 
 
-class MarketHistoryParser(models.Model):
+class ParserStatus(models.Model):
+    name = models.CharField(
+        max_length=50
+    )
+    describe = models.CharField(
+        max_length=100
+    )
     region_id = models.IntegerField()
-    type_id = models.IntegerField()
+    now_parse = models.IntegerField()

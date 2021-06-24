@@ -1,5 +1,5 @@
 from eve_parser.include.parser import Parser
-from eve_parser.models import Types, Regions, MarketHistory, MarketHistoryParser
+from eve_parser.models import Types, Regions, MarketHistory
 import json
 from datetime import datetime
 
@@ -22,12 +22,12 @@ def parse_region_history(region):
         market_history_json = parser.evetech_req("/markets/" + str(region[0]) + "/history/", dict_get_args)
         if "error" in market_history_json:
             continue
+        parser.parser_status("Market history", "item_type", region[0], item_type[0])
+        print("Item: " + str(region) + " " + str(item_type))
         insert_in_base(json.loads(market_history_json), region[0], item_type[0])
 
 
 def insert_in_base(market_history_data, region, item_type):
-    print("Item: " + str(region) + " " + str(item_type))
-    MarketHistoryParser.objects.filter(id=1).update(region_id=region, type_id=item_type)
     for market_history_day in market_history_data:
         m = list(MarketHistory.objects.filter(region_id=region, type_id=item_type, date=market_history_day['date']))
         if len(m) == 0:

@@ -1,6 +1,7 @@
 from config import Config
 import requests
 import time
+from eve_parser.models import ParserStatus
 
 
 class Parser:
@@ -28,3 +29,11 @@ class Parser:
                     time.sleep(k*2)
 
         return r.text
+
+    def parser_status(self, name, describe, region_id, now_parse):
+        p = ParserStatus.objects.filter(name=name)
+        if len(p) == 0:
+            ParserStatus.objects.create(name=name, describe=describe, region_id=region_id, now_parse=now_parse)
+        else:
+            ParserStatus.objects.filter(name=name).update(name=name, describe=describe,
+                                                          region_id=region_id, now_parse=now_parse)
