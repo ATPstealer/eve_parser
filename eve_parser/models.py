@@ -62,3 +62,11 @@ class ParserStatus(models.Model):
     )
     region_id = models.IntegerField()
     now_parse = models.IntegerField()
+
+
+class Liquidity(models.Model):
+    region_id = models.IntegerField()
+    type_id = models.IntegerField()
+    month_volume = models.BigIntegerField()
+    price = models.FloatField()
+    month_turnover = models.FloatField()
