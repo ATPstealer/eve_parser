@@ -1,0 +1,6 @@
+[Unit]
+Description=django-app
+
+[Service]
+ExecStart=python3 manage.py /root/eve_parser/runserver 188.34.204.103:8000
+Restart=always
