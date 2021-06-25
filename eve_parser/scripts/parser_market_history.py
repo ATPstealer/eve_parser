@@ -1,5 +1,5 @@
 from eve_parser.include.parser import Parser
-from eve_parser.models import Types, Regions, MarketHistory
+from eve_parser.models import TopTypes, Regions, MarketHistory
 import json
 from datetime import datetime
 
@@ -17,7 +17,7 @@ def run(*args):
 def parse_region_history(region):
     parser = Parser()
     print("Region parse start: " + str(region[0]))
-    for item_type in Types.objects.values_list("type_id"):
+    for item_type in TopTypes.objects.values_list("type_id"):
         dict_get_args = {"type_id": item_type[0]}
         market_history_json = parser.evetech_req("/markets/" + str(region[0]) + "/history/", dict_get_args)
         if "error" in market_history_json:

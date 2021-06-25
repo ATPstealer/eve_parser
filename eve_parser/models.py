@@ -11,6 +11,12 @@ class Types(models.Model):
     )
 
 
+class TopTypes(models.Model):
+    type_id = models.IntegerField(
+        unique=True
+    )
+
+
 class Market(models.Model):
     parse_time = models.DateTimeField(
         auto_now=True
