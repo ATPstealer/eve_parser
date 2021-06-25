@@ -22,10 +22,10 @@ class Parser:
                 if r.status_code == 200 or r.status_code == 404:
                     return r.text
                 elif r.status_code == 420:
-                    print("Response code: " + str(r.status_code))
+                    print("Response code: " + str(r.status_code) + " Wait: " + k*10)
                     time.sleep(k*10)
                 else:
-                    print("Response code: " + str(r.status_code))
+                    print("Response code: " + str(r.status_code) + " Wait: " + k*2)
                     time.sleep(k*2)
 
         return r.text
