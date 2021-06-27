@@ -1,0 +1,1 @@
+0 3 * * * cd /root/eve_parser && python3 manage.py runscript parser_market
