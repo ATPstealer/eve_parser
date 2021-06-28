@@ -13,6 +13,8 @@ def run(*args):
         paginator(args[0])
     print("start at: %s\nend at: %s" % (start, datetime.now()))
     clear_market()
+    parser = Parser()
+    parser.parser_status("Market", "Done <br>Start at: %s\n<br>end at: %s" % (start, datetime.now())", 0, 0)
 
 
 def paginator(region):
@@ -26,7 +28,6 @@ def paginator(region):
             break
         print("Parse market in " + str(region) + " page " + str(page))
         insert_in_base(json.loads(market_json), region)
-    parser.parser_status("Market", "Done", region, page)
 
 
 def insert_in_base(market_data, region):
