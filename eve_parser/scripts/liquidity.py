@@ -35,8 +35,8 @@ def insert_in_base(region_id, type_id, day_avg_volume, last_average_price, day_t
     liq = list(Liquidity.objects.filter(region_id=region_id, type_id=type_id))
     if len(liq) < 1:
         liquidity = Liquidity.objects.create(
-            region_id=region_id, type_id=type_id, dat_volume=day_avg_volume,
-            price=last_average_price, dat_turnover=day_turnover)
+            region_id=region_id, type_id=type_id, day_volume=day_avg_volume,
+            price=last_average_price, day_turnover=day_turnover)
         liquidity.save()
     else:
         liquidity = Liquidity.objects.filter(region_id=region_id, type_id=type_id).update(
