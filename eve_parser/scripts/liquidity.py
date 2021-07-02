@@ -24,22 +24,21 @@ def liquidity_calc(region_id, type_id, month_ago, market_history):
         last_date = market_history_day.date
         day_range = last_date - month_ago.date()
     if day_range.days != 0:
-        month_avg_volume = volume / day_range.days
-        print(region_id, type_id, month_avg_volume, last_average_price, month_avg_volume * last_average_price/1000000000)
-        insert_in_base(region_id, type_id, month_avg_volume, last_average_price,
-                       month_avg_volume * last_average_price/1000000000)
+        day_avg_volume = volume / day_range.days
+        insert_in_base(region_id, type_id, day_avg_volume, last_average_price,
+                       day_avg_volume * last_average_price/1000000000)
         parser = Parser()
         parser.parser_status("Liquidity calculation", "item_type", region_id, type_id)
 
 
-def insert_in_base(region_id, type_id, month_avg_volume, last_average_price, month_turnover):
+def insert_in_base(region_id, type_id, day_avg_volume, last_average_price, day_turnover):
     liq = list(Liquidity.objects.filter(region_id=region_id, type_id=type_id))
     if len(liq) < 1:
         liquidity = Liquidity.objects.create(
-            region_id=region_id, type_id=type_id, month_volume=month_avg_volume,
-            price=last_average_price, month_turnover=month_turnover)
+            region_id=region_id, type_id=type_id, dat_volume=day_avg_volume,
+            price=last_average_price, dat_turnover=day_turnover)
         liquidity.save()
     else:
         liquidity = Liquidity.objects.filter(region_id=region_id, type_id=type_id).update(
-            region_id=region_id, type_id=type_id, month_volume=month_avg_volume,
-            price=last_average_price, month_turnover=month_turnover)
+            region_id=region_id, type_id=type_id, day_volume=day_avg_volume,
+            price=last_average_price, day_turnover=day_turnover)
