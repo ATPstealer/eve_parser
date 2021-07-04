@@ -15,11 +15,13 @@ class Parser:
             get_args += "&" + key + "=" + str(dict_get_args[key])
         for k in range(1, 360):
             try:
+                print(self.config.esi + section + self.config.server + get_args)
                 r = requests.get(self.config.esi + section + self.config.server + get_args)
             except requests.exceptions.RequestException as e:
                 print("request can't receive data: %s" % e)
             else:
-                if r.status_code == 200 or r.status_code == 404:
+                if r.status_code == 200 or r.status_code == 404 or \
+                        r.status_code == 500 and "Undefined 404 response" in r.text:
                     return r.text
                 elif r.status_code == 420:
                     print("Response code: " + str(r.status_code) + " Wait: " + str(k*10))
