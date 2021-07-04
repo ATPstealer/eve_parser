@@ -9,6 +9,18 @@ class Types(models.Model):
     type_id = models.IntegerField(
         unique=True
     )
+    parse_time = models.DateTimeField(
+        auto_now=True
+    )
+    name = models.CharField(
+        max_length=128
+    )
+    packaged_volume = models.FloatField()
+    volume = models.FloatField()
+    group_id = models.IntegerField()
+    market_group_id = models.IntegerField()
+    icon_id = models.IntegerField()
+    description = models.TextField()
 
 
 class TopTypes(models.Model):
