@@ -11,5 +11,5 @@ def run():
         print(typ.type_id)
         for liq in liquidity:
             if liq.type_id == typ.type_id:
-                types = TopTypes.objects.create(type_id=liq.type_id)
+                types = TopTypes.objects.create(type_id=typ.type_id, name=typ.name)
                 types.save()

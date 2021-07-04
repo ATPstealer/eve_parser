@@ -27,6 +27,9 @@ class TopTypes(models.Model):
     type_id = models.IntegerField(
         unique=True
     )
+    name = models.CharField(
+        max_length=128
+    )
 
 
 class Market(models.Model):
