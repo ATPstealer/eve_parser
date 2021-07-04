@@ -8,7 +8,8 @@ def run():
     for region in Regions.objects.values_list("region_id"):
         for item_type in Types.objects.values_list("type_id"):
             month_ago = datetime.utcnow() - timedelta(days=30)
-            market_history = MarketHistory.objects.filter(region_id=region[0], type_id=item_type[0], date__gte=month_ago.strftime("%Y-%m-%d"))
+            market_history = MarketHistory.objects.filter(region_id=region[0], type_id=item_type[0],
+                                                          date__gte=month_ago.strftime("%Y-%m-%d"))
             market_history = sorted(market_history, key=operator.attrgetter('date'))
             liquidity_calc(region[0], item_type[0], month_ago, market_history)
 

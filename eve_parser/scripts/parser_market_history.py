@@ -24,11 +24,12 @@ def parse_region_history(region):
         if "error" in market_history_json:
             continue
         parser.parser_status("Market history", "item_type", region[0], item_type[0])
-        print("Item: " + str(region) + " " + str(item_type))
+        print("Item: " + str(region[0]) + " " + str(item_type[0]))
         insert_in_base(json.loads(market_history_json), region[0], item_type[0])
 
 
 def insert_in_base(market_history_data, region, item_type):
+    start_insert = datetime.now()
     for market_history_day in market_history_data:
         m = list(MarketHistory.objects.filter(region_id=region, type_id=item_type, date=market_history_day['date']))
         if len(m) == 0:
@@ -38,4 +39,4 @@ def insert_in_base(market_history_data, region, item_type):
                 highest=market_history_day['highest'], lowest=market_history_day['lowest'],
                 order_count=market_history_day['order_count'], volume=market_history_day['volume'])
             market_history.save()
-
+    print("start insert at: %s\nend at: %s" % (start_insert, datetime.now()))
