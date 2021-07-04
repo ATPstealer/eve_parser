@@ -1,12 +1,12 @@
 import operator
-from eve_parser.models import MarketHistory, Types, Regions, Liquidity
+from eve_parser.models import MarketHistory, TopTypes, Regions, Liquidity
 from datetime import datetime, timedelta, date
 from eve_parser.include.parser import Parser
 
 
 def run():
     for region in Regions.objects.values_list("region_id"):
-        for item_type in Types.objects.values_list("type_id"):
+        for item_type in TopTypes.objects.values_list("type_id"):
             month_ago = datetime.utcnow() - timedelta(days=30)
             market_history = MarketHistory.objects.filter(region_id=region[0], type_id=item_type[0],
                                                           date__gte=month_ago.strftime("%Y-%m-%d"))
