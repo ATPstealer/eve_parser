@@ -29,11 +29,10 @@ def parse_region_history(region):
 
 
 def insert_in_base(market_history_data, region, item_type):
-    start_insert = datetime.now()
     market_history_exist = list(MarketHistory.objects.filter(region_id=region, type_id=item_type))
-    for day_in_base in market_history_exist:
+    for market_history_day in market_history_data:
         day_exist = 0
-        for market_history_day in market_history_data:
+        for day_in_base in market_history_exist:
             if market_history_day["date"] == str(day_in_base.date):
                 day_exist = 1
                 break
@@ -44,4 +43,3 @@ def insert_in_base(market_history_data, region, item_type):
                 highest=market_history_day['highest'], lowest=market_history_day['lowest'],
                 order_count=market_history_day['order_count'], volume=market_history_day['volume'])
             market_history.save()
-    print("start insert at: %s\nend at: %s" % (start_insert, datetime.now()))
