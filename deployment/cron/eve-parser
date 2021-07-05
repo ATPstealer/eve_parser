@@ -1,1 +1,4 @@
-0 3 * * * cd /root/eve_parser && python3 manage.py runscript parser_market
+0 21 * * * root cd /root/eve_parser && python3 manage.py runscript parser_market
+0 0 * * * root cd /root/eve_parser && python3 manage.py runscript liquidity
+15 14 */2 * * root cd /root/eve_parser && python3 manage.py runscript parser_market_history
+15 14 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31 * * root cd /root/eve_parser && python3 manage.py runscript parser_market_history 10000002
