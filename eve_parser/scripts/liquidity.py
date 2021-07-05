@@ -13,8 +13,10 @@ def run():
                                                           date__gte=month_ago.strftime("%Y-%m-%d"))
             market_history = sorted(market_history, key=operator.attrgetter('date'))
             liquidity_calc(region[0], item_type[0], month_ago, market_history)
-    print("start at: %s\nend at: %s" % (start, datetime.now()))
-    Parser.parser_status("Liquidity calculation", "Done \nStart at: %s\nend at: %s" % (start, datetime.now()), 0, 0)
+            Parser.parser_status("Liquidity calculation", "item_type", region[0], item_type[0])
+
+    print("start at: %s\n end at: %s" % (start, datetime.now()))
+    Parser.parser_status("Liquidity calculation", "Done \nStart at: %s\n end at: %s" % (start, datetime.now()), 0, 0)
 
 
 def liquidity_calc(region_id, type_id, month_ago, market_history):
@@ -31,7 +33,6 @@ def liquidity_calc(region_id, type_id, month_ago, market_history):
         day_avg_volume = volume / day_range.days
         insert_in_base(region_id, type_id, day_avg_volume, last_average_price,
                        day_avg_volume * last_average_price/1000000000)
-        Parser.parser_status("Liquidity calculation", "item_type", region_id, type_id)
 
 
 def insert_in_base(region_id, type_id, day_avg_volume, last_average_price, day_turnover):
