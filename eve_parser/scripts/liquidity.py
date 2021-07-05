@@ -5,6 +5,7 @@ from eve_parser.include.parser import Parser
 
 
 def run():
+    start = datetime.now()
     for region in Regions.objects.values_list("region_id"):
         for item_type in TopTypes.objects.values_list("type_id"):
             month_ago = datetime.utcnow() - timedelta(days=30)
@@ -12,6 +13,9 @@ def run():
                                                           date__gte=month_ago.strftime("%Y-%m-%d"))
             market_history = sorted(market_history, key=operator.attrgetter('date'))
             liquidity_calc(region[0], item_type[0], month_ago, market_history)
+    print("start at: %s\nend at: %s" % (start, datetime.now()))
+    parser = Parser()
+    parser.parser_status("Liquidity calculation", "Done <br>Start at: %s\n<br>end at: %s" % (start, datetime.now()), 0, 0)
 
 
 def liquidity_calc(region_id, type_id, month_ago, market_history):
