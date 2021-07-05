@@ -14,7 +14,7 @@ def run():
             market_history = sorted(market_history, key=operator.attrgetter('date'))
             liquidity_calc(region[0], item_type[0], month_ago, market_history)
     print("start at: %s\nend at: %s" % (start, datetime.now()))
-    Parser.parser_status("Liquidity calculation", "Done <br>Start at: %s\n<br>end at: %s" % (start, datetime.now()), 0, 0)
+    Parser.parser_status("Liquidity calculation", "Done \nStart at: %s\nend at: %s" % (start, datetime.now()), 0, 0)
 
 
 def liquidity_calc(region_id, type_id, month_ago, market_history):

@@ -12,7 +12,7 @@ def run(*args):
     else:
         parse_region_history(args)
     print("start at: %s\nend at: %s" % (start, datetime.now()))
-    Parser.parser_status("Market history", "Done <br>Start at: %s\n<br>end at: %s" % (start, datetime.now()), 0, 0)
+    Parser.parser_status("Market history", "Done \nStart at: %s\nend at: %s" % (start, datetime.now()), 0, 0)
 
 
 def parse_region_history(region):
