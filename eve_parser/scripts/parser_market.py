@@ -14,7 +14,7 @@ def run(*args):
     print("start at: %s\nend at: %s" % (start, datetime.now()))
     clear_market()
     parser = Parser()
-    parser.parser_status("Market", "Done <br>Start at: %s\n<br>end at: %s" % (start, datetime.now())", 0, 0)
+    parser.parser_status("Market", "Done <br>Start at: %s\n<br>end at: %s" % (start, datetime.now()), 0, 0)
 
 
 def paginator(region):
