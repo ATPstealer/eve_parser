@@ -28,10 +28,10 @@ class Parser:
                 else:
                     print("Response code: " + str(r.status_code) + " Wait: " + str(k*2))
                     time.sleep(k*2)
-
         return r.text
 
-    def parser_status(self, name, describe, region_id, now_parse):
+    @staticmethod
+    def parser_status(name, describe, region_id, now_parse):
         p = ParserStatus.objects.filter(name=name)
         if len(p) == 0:
             ParserStatus.objects.create(name=name, describe=describe, region_id=region_id, now_parse=now_parse)

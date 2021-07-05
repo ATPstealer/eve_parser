@@ -13,14 +13,13 @@ def run(*args):
         paginator(args[0])
     print("start at: %s\nend at: %s" % (start, datetime.now()))
     clear_market()
-    parser = Parser()
-    parser.parser_status("Market", "Done <br>Start at: %s\n<br>end at: %s" % (start, datetime.now()), 0, 0)
+    Parser.parser_status("Market", "Done <br>Start at: %s\n<br>end at: %s" % (start, datetime.now()), 0, 0)
 
 
 def paginator(region):
     parser = Parser()
     for page in range(1, 10000):
-        parser.parser_status("Market", "page", region, page)
+        Parser.parser_status("Market", "page", region, page)
         dict_get_args = {"order_type": "all", "page": page}
         market_json = parser.evetech_req("/markets/" + str(region) + "/orders/", dict_get_args)
         if 'error' in market_json:

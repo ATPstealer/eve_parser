@@ -12,8 +12,7 @@ def run(*args):
     else:
         parse_region_history(args)
     print("start at: %s\nend at: %s" % (start, datetime.now()))
-    parser = Parser()
-    parser.parser_status("Market history", "Done <br>Start at: %s\n<br>end at: %s" % (start, datetime.now()), 0, 0)
+    Parser.parser_status("Market history", "Done <br>Start at: %s\n<br>end at: %s" % (start, datetime.now()), 0, 0)
 
 
 def parse_region_history(region):
@@ -25,7 +24,7 @@ def parse_region_history(region):
         market_history_json = parser.evetech_req("/markets/" + str(region[0]) + "/history/", dict_get_args)
         if "error" in market_history_json:
             continue
-        parser.parser_status("Market history", "item_type", region[0], item_type[0])
+        Parser.parser_status("Market history", "item_type", region[0], item_type[0])
         print("Item: " + str(region[0]) + " " + str(item_type[0]))
         insert_in_base(json.loads(market_history_json), region[0], item_type[0])
 
