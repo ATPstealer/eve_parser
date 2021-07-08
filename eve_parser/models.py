@@ -105,3 +105,5 @@ class LogisticsPlanning(models.Model):
     liquidity_to = models.FloatField()
     day_volume_from = models.FloatField()
     day_volume_to = models.FloatField()
+    profit_from = models.FloatField()
+    profit_to = models.FloatField()
