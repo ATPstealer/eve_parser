@@ -1,4 +1,4 @@
-from eve_parser.models import TopTypes, Regions, MarketHistory, Types, Liquidity, LogisticsPlanning
+from eve_parser.models import TopTypes, Regions, Types, Liquidity, LogisticsPlanning
 from eve_parser.models import models
 from datetime import datetime
 from eve_parser.include.parser import Parser
@@ -6,15 +6,19 @@ from eve_parser.include.parser import Parser
 
 def run(*args):
     start = datetime.now()
-    calculate_logistics(args)
+    region_from = args[0]
+    region_to = args[1]
+    day_turnover_threshold = float(args[2])
+    if region_to == "*":
+        for region in Regions.objects.values_list("region_id"):
+            calculate_logistics(region_from, region, day_turnover_threshold)
+    else:
+        calculate_logistics(region_from, region_to, day_turnover_threshold)
     print("start at: %s\n end at: %s" % (start, datetime.now()))
     Parser.parser_status("Calculate logistics", "Done \nStart at: %s\n end at: %s" % (start, datetime.now()), 0, 0)
 
 
-def calculate_logistics(args):
-    region_from = args[0]
-    region_to = args[1]
-    day_turnover_threshold = float(args[2])
+def calculate_logistics(region_from, region_to, day_turnover_threshold):
     print("Calculate logistics from %s to %s" % (region_from, region_to))
     for item_type in TopTypes.objects.values_list("type_id"):
         Parser.parser_status("Calculate logistics", "item_type", region_to, item_type[0])
