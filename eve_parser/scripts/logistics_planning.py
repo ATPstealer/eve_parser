@@ -40,7 +40,7 @@ def calculate_logistics(args):
                     liquidity_from=liquidity_from.day_turnover, liquidity_to=liquidity_to.day_turnover,
                     day_volume_from=liquidity_from.day_volume, day_volume_to=liquidity_to.day_volume,
                     profit_from=float((liquidity_from.price - liquidity_to.price) * (-1) * liquidity_to.day_volume) / 1000000,
-                    profit_to=float((liquidity_from.price - liquidity_to.price) * liquidity_from.day_volume)) / 1000000
+                    profit_to=float((liquidity_from.price - liquidity_to.price) * liquidity_from.day_volume) / 1000000)
                 logistics_planning.save()
             else:
                 logistics_planning = LogisticsPlanning.objects.filter(type_id=item_type[0], region_id_from=region_from,
