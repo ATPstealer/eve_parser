@@ -17,6 +17,8 @@ def calculate_logistics(args):
     day_turnover_threshold = float(args[2])
     print("Calculate logistics from %s to %s" % (region_from, region_to))
     for item_type in TopTypes.objects.values_list("type_id"):
+        Parser.parser_status("Calculate logistics", "item_type", region_to, item_type[0])
+        print("Item type: %s" % item_type[0])
         # get data from database
         item_describe = Types.objects.get(type_id=item_type[0])
         try:
