@@ -5,7 +5,6 @@ from eve_parser.include.parser import Parser
 
 
 def run(*args):
-    print(args)
     start = datetime.now()
     region_from = args[0]
     region_to = args[1]
