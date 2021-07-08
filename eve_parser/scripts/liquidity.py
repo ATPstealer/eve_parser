@@ -32,7 +32,7 @@ def liquidity_calc(region_id, type_id, month_ago, market_history):
     if day_range.days != 0:
         day_avg_volume = volume / day_range.days
         insert_in_base(region_id, type_id, day_avg_volume, last_average_price,
-                       day_avg_volume * last_average_price/1000000000)
+                       day_avg_volume * last_average_price/1000000)
 
 
 def insert_in_base(region_id, type_id, day_avg_volume, last_average_price, day_turnover):
