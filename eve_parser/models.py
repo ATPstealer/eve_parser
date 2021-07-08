@@ -91,3 +91,17 @@ class Liquidity(models.Model):
     day_volume = models.FloatField()
     price = models.FloatField()
     day_turnover = models.FloatField()
+
+
+class LogisticsPlanning(models.Model):
+    type_id = models.IntegerField()
+    packaged_volume = models.FloatField()
+    region_id_from = models.IntegerField()
+    region_id_to = models.IntegerField()
+    price_from = models.FloatField()
+    price_to = models.FloatField()
+    price_diff = models.FloatField()
+    liquidity_from = models.FloatField()
+    liquidity_to = models.FloatField()
+    day_volume_from = models.FloatField()
+    day_volume_to = models.FloatField()

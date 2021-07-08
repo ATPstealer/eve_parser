@@ -1,13 +1,15 @@
 from eve_parser.include.parser import Parser
-from eve_parser.models import Types
+from eve_parser.models import Liquidity, TopTypes, Types
 import json
 from datetime import datetime, timezone, timedelta
+from django.db.models import Q
 
 
 def run():
     parse_types()
     parse_types_description()
     clear_types()
+    top_types()
 
 
 def parse_types():
@@ -59,3 +61,16 @@ def clear_types():
     for order in orders_for_delete:
         print("Delete: " + str(order.order_id))
         order.delete()
+
+
+def top_types():
+    TopTypes.objects.all().delete()
+    liquidity = Liquidity.objects.filter(region_id=10000002, day_volume__gte=0.001)
+    types = Types.objects.filter(~Q(market_group_id=0), ~Q(name__contains="blueprint"), ~Q(name__contains="SKIN"),
+                                 ~Q(name__contains="Men's"), ~Q(name__contains="Women's"))
+    for typ in types:
+        print(typ.type_id)
+        for liq in liquidity:
+            if liq.type_id == typ.type_id:
+                types = TopTypes.objects.create(type_id=typ.type_id, name=typ.name)
+                types.save()

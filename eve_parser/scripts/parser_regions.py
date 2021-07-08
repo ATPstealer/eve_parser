@@ -4,6 +4,11 @@ import json
 
 
 def run():
+    clear_regions()
+    parse_region()
+
+
+def parse_region():
     parser = Parser()
     regions_json = parser.evetech_req("/universe/regions/", {})
     regions_data = json.loads(regions_json)
