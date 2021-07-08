@@ -11,7 +11,7 @@ def run(*args):
     day_turnover_threshold = float(args[2])
     if region_to == "*":
         for region in Regions.objects.values_list("region_id"):
-            calculate_logistics(region_from, region, day_turnover_threshold)
+            calculate_logistics(region_from, region[0], day_turnover_threshold)
     else:
         calculate_logistics(region_from, region_to, day_turnover_threshold)
     print("start at: %s\n end at: %s" % (start, datetime.now()))
