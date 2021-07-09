@@ -31,7 +31,6 @@ def liquidity_calc(region_id, type_id, month_ago, market_history):
         if days == len(market_history):
             last_date = market_history_day.date
             day_range = last_date - month_ago.date()
-    print(days)
     if day_range.days != 0:
         if days >= 3:
             average_price_3_days /= 3
