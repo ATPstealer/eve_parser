@@ -64,7 +64,7 @@ def clear_types():
 
 def top_types():
     TopTypes.objects.all().delete()
-    liquidity = Liquidity.objects.filter(region_id=10000002, day_volume__gte=0.001)
+    liquidity = Liquidity.objects.filter(region_id=10000002, day_volume__gte=1)
     types = Types.objects.filter(~Q(market_group_id=0), ~Q(name__contains="blueprint"), ~Q(name__contains="Blueprint"),
                                  ~Q(name__contains="SKIN"), ~Q(name__contains="Men's"), ~Q(name__contains="Women's"))
     for typ in types:
