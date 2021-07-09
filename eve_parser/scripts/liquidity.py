@@ -14,7 +14,6 @@ def run():
             market_history = sorted(market_history, key=operator.attrgetter('date'))
             liquidity_calc(region[0], item_type[0], month_ago, market_history)
             Parser.parser_status("Liquidity calculation", "item_type", region[0], item_type[0])
-
     print("start at: %s\n end at: %s" % (start, datetime.now()))
     Parser.parser_status("Liquidity calculation", "Done \nStart at: %s\n end at: %s" % (start, datetime.now()), 0, 0)
 
@@ -24,6 +23,7 @@ def liquidity_calc(region_id, type_id, month_ago, market_history):
     volume = 0
     day_range = timedelta(0)
     for market_history_day in market_history:
+        print(market_history_day.date)
         days += 1
         volume += market_history_day.volume
         last_average_price = market_history_day.average
