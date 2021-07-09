@@ -15,18 +15,25 @@ def run(*args):
     Parser.parser_status("Market history", "Done \nStart at: %s\n end at: %s" % (start, datetime.now()), 0, 0)
 
 
-def parse_region_history(region):
+def parse_region_history(args):
     parser = Parser()
-    print("Region parse start: " + str(region[0]))
-    # for item_type in Types.objects.values_list("type_id"):
-    for item_type in TopTypes.objects.values_list("type_id"):
+    region = args[0]
+    if len(args) > 1:
+        if "all" in args[1]:
+            parse_type_array = Types.objects.values_list("type_id")
+        else:
+            parse_type_array = TopTypes.objects.values_list("type_id")
+    else:
+        parse_type_array = TopTypes.objects.values_list("type_id")
+    print("Region parse start: " + str(region))
+    for item_type in parse_type_array:
         dict_get_args = {"type_id": item_type[0]}
-        market_history_json = parser.evetech_req("/markets/" + str(region[0]) + "/history/", dict_get_args)
+        market_history_json = parser.evetech_req("/markets/" + str(region) + "/history/", dict_get_args)
         if "error" in market_history_json:
             continue
-        Parser.parser_status("Market history", "item_type", region[0], item_type[0])
-        print("Item: " + str(region[0]) + " " + str(item_type[0]))
-        insert_in_base(json.loads(market_history_json), region[0], item_type[0])
+        Parser.parser_status("Market history", "item_type", region, item_type[0])
+        print("Item: " + str(region) + " " + str(item_type[0]))
+        insert_in_base(json.loads(market_history_json), region, item_type[0])
 
 
 def insert_in_base(market_history_data, region, item_type):
