@@ -72,5 +72,5 @@ def top_types():
         print(typ.type_id)
         # for liq in liquidity:
             # if liq.type_id == typ.type_id:
-                types = TopTypes.objects.create(type_id=typ.type_id, name=typ.name)
-                types.save()
+        types_for_save = TopTypes.objects.create(type_id=typ.type_id, name=typ.name)
+        types_for_save.save()
