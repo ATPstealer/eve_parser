@@ -23,7 +23,6 @@ def parse_types():
 
         types_data = json.loads(types_json)
         for item_type in types_data:
-            print(item_type)
             t = list(Types.objects.filter(type_id=item_type))
             if len(t) < 1:
                 types = Types.objects.create(type_id=item_type,
