@@ -22,17 +22,24 @@ def liquidity_calc(region_id, type_id, month_ago, market_history):
     days = 0
     volume = 0
     day_range = timedelta(0)
+    average_price_3_days = 0
     for market_history_day in market_history:
-        print(market_history_day.date)
         days += 1
         volume += market_history_day.volume
-        last_average_price = market_history_day.average
-        last_date = market_history_day.date
-        day_range = last_date - month_ago.date()
+        if days > len(market_history) - 3:
+            average_price_3_days += market_history_day.average
+        if days == len(market_history):
+            last_date = market_history_day.date
+            day_range = last_date - month_ago.date()
+    print(days)
     if day_range.days != 0:
+        if days >= 3:
+            average_price_3_days /= 3
+        elif days == 2:
+            average_price_3_days /= 2
         day_avg_volume = volume / day_range.days
-        insert_in_base(region_id, type_id, day_avg_volume, last_average_price,
-                       day_avg_volume * last_average_price/1000000)
+        insert_in_base(region_id, type_id, day_avg_volume, average_price_3_days,
+                       day_avg_volume * average_price_3_days/1000000)
 
 
 def insert_in_base(region_id, type_id, day_avg_volume, last_average_price, day_turnover):
