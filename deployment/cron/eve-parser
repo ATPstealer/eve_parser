@@ -1,5 +1,5 @@
 0 21 * * * root cd /root/eve_parser && python3 manage.py runscript parser_market
-0 0 */2 * * root cd /root/eve_parser && python3 manage.py runscript liquidity
+0 0 * * * root cd /root/eve_parser && python3 manage.py runscript liquidity
 15 11 */3 * * root cd /root/eve_parser && python3 manage.py runscript parser_market_history
-15 11 1-31/3,2-31/3 * * root cd /root/eve_parser && python3 manage.py runscript parser_market_history --script-args 10000002
+15 11 1-31/3,2-31/3 * * root cd /root/eve_parser && python3 manage.py runscript parser_market_history --script-args 10000002 all
 00 14 1-31/3 * * root cd /root/eve_parser && python3 manage.py runscript logistics_planning --script-args 10000002 "*" 1
