@@ -1,13 +1,19 @@
 import operator
-from eve_parser.models import MarketHistory, TopTypes, Regions, Liquidity
+from eve_parser.models import MarketHistory, TopTypes, Regions, Liquidity, Types
 from datetime import datetime, timedelta, date
 from eve_parser.include.parser import Parser
 
 
-def run():
+def run(*args):
     start = datetime.now()
-    for region in Regions.objects.values_list("region_id"):
-        for item_type in TopTypes.objects.values_list("type_id"):
+    region_array =  Regions.objects.values_list("region_id")
+    types_array = TopTypes.objects.values_list("type_id")
+    if len(args) > 0:
+        if "jita_all" in args[0]:
+            region_array = ["10000002"]
+            types_array = Types.objects.values_list("type_id")
+    for region in region_array:
+        for item_type in types_array:
             month_ago = datetime.utcnow() - timedelta(days=30)
             market_history = MarketHistory.objects.filter(region_id=region[0], type_id=item_type[0],
                                                           date__gte=month_ago.strftime("%Y-%m-%d"))
