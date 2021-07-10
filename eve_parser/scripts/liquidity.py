@@ -6,11 +6,11 @@ from eve_parser.include.parser import Parser
 
 def run(*args):
     start = datetime.now()
-    region_array =  Regions.objects.values_list("region_id")
+    region_array = Regions.objects.values_list("region_id")
     types_array = TopTypes.objects.values_list("type_id")
     if len(args) > 0:
         if "jita_all" in args[0]:
-            region_array = ["10000002"]
+            region_array = [["10000002"]]
             types_array = Types.objects.values_list("type_id")
     for region in region_array:
         for item_type in types_array:
