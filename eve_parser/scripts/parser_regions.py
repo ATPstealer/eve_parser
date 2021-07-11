@@ -29,7 +29,7 @@ def parse_region_description():
     parser = Parser()
     dict_get_args = {"language": "en"}
     for region in Regions.objects.values_list("region_id"):
-        print("Region description parse: " + srt(region))
+        print("Region description parse: " + str(region))
         region_description_json = parser.evetech_req("/universe/regions/" + str(region[0]), dict_get_args)
         region_description_json = json.loads(region_description_json)
         if "description" not in region_description_json:
