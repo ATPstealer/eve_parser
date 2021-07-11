@@ -4,43 +4,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Parser Stats</title>
+    <title>Logistics planing</title>
 </head>
 
 <body>
-<h2> Liquidity on
-<form method="get" action="/logistics/" id="region_form" style="white-space:nowrap;">
-  <select class="form-select" name="region" style="width: 200px;" id="region" onchange="javascript:this.form.submit()">
+<h2> From, To </h2>
+<form method="get" action="/logistics/planing/" id="region_form" style="display:inline-block; position: relative;">
+  <select class="form-select" name="region_from" style="width: 200px;" id="region_from" onchange="javascript:this.form.submit()">
   {% for reg in regions %}
-    <option {% if region_selected == reg.0 %}selected{% endif %}>{{ reg.0 }}</option>
+    <option {% if region_from_selected == reg.0 %}selected{% endif %}>{{ reg.0 }}</option>
   {% endfor %}
   </select>
-</form> </h2>
+  <select class="form-select" name="region_to" style="width: 200px; float: left" id="region_to" onchange="javascript:this.form.submit()">
+  {% for reg in regions %}
+    <option {% if region_to_selected == reg.0 %}selected{% endif %}>{{ reg.0 }}</option>
+  {% endfor %}
+  </select>
+</form>
 <table class="table">
   <thead>
     <tr>
       <th scope="col">Type_id</th>
       <th scope="col">Name</th>
-      <th scope="col">Day turnover, millions</th>
-      <th scope="col">Day volume</th>
-      <th scope="col">Median price</th>
+      <th scope="col">Profit</th>
+      <th scope="col">Price From</th>
+      <th scope="col">Price To</th>
+      <th scope="col">Diff</th>
+      <th scope="col">Liq From</th>
+      <th scope="col">Liq To</th>
     </tr>
   </thead>
   <tbody>
-{% for liq in liquidity %}
+{% for log in logistics %}
     <tr>
-      <td>{{ liq.type_id }}</td>
-      <th scope="row">{{ liq.name }}</th>
-      <td>{{ liq.day_turnover }}</td>
-      <td>{{ liq.day_volume }}</td>
-      <td>{{ liq.price }}</td>
+      <td>{{ log.type_id }}</td>
+      <th scope="row">{{ log.name }}</th>
+      <td>{{ log.profit_from }}</td>
+      <td>{{ log.price_from }}</td>
+      <td>{{ log.price_to }}</td>
+      <td>{{ log.price_diff }}</td>
+      <td>{{ log.liquidity_from }}</td>
+      <td>{{ log.liquidity_to }}</td>
     </tr>
-    <div class="row">
-        <div class="col">{{ stats.0 }}</div>
-        <div class="col">{{ stats.2 }}</div>
-        <div class="col">{{ stats.3 }}</div>
-        <div class="col">{{ stats.1 }}</div>
-    </div>
 {% endfor %}
   </tbody>
 </table>
