@@ -18,10 +18,14 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('', views.redirect_pars),
     path('admin/', admin.site.urls),
+    path('eve_parser/', include('eve_parser.urls')),
+    path('eve_parser/', include('logistics.urls')),
+
+    path('', views.redirect_pars),
+
     path('hello/', views.hello),
     path('time/', views.current_datetime),
     path('time/plus/<int:num>/', views.hours_ahead),
-    path('eve_parser/', include('eve_parser.urls')),
+
 ]

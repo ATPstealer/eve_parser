@@ -7,4 +7,5 @@ db.sqlite3
 venv/
 __pycache__/
 eve_parser/migrations
+logistics/migrations
 .git
