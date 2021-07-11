@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from eve_parser.models import Liquidity, Types, Regions
 from logistics.models import models
-import operator
+from config import Config
 
 
 def liquidity(request):
+    config = Config()
     if "region" not in request.GET:
         region = "The Forge"
     else:
@@ -22,7 +23,7 @@ def liquidity(request):
     liquidity_to_page = []
     for liq in liquidity_array:
         count_display += 1
-        if count_display > 100:
+        if count_display > config.counts_on_page:
             break
         name = Types.objects.values_list("name").filter(type_id=liq[0])
         liquidity_to_page.append({'name': name[0][0], 'type_id': liq[0], 'day_volume': liq[1],
