@@ -12,6 +12,7 @@ def run(*args):
         if "jita_all" in args[0]:
             region_array = [["10000002"]]
             types_array = Types.objects.values_list("type_id")
+    parser_write = 0
     for region in region_array:
         for item_type in types_array:
             month_ago = datetime.utcnow() - timedelta(days=30)
@@ -19,7 +20,10 @@ def run(*args):
                                                           date__gte=month_ago.strftime("%Y-%m-%d"))
             market_history = sorted(market_history, key=operator.attrgetter('date'))
             liquidity_calc(region[0], item_type[0], month_ago, market_history)
-            Parser.parser_status("Liquidity calculation", "item_type", region[0], item_type[0])
+            parser_write += 1
+            if parser_write == 50:
+                Parser.parser_status("Liquidity calculation", "item_type", region[0], item_type[0])
+                parser_write = 0
     print("start at: %s\n end at: %s" % (start, datetime.now()))
     Parser.parser_status("Liquidity calculation", "Done \nStart at: %s\n end at: %s" % (start, datetime.now()), 0, 0)
 
