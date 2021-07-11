@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from eve_parser.models import Liquidity, Types, Regions
 from logistics.models import models
+import operator
 
 
 def liquidity(request):
@@ -27,7 +28,7 @@ def liquidity(request):
         liquidity_to_page.append({'name': name[0][0], 'type_id': liq[0], 'day_volume': liq[1],
                                   'day_turnover': liq[2], 'price': liq[3]})
 
-    regions = Regions.objects.values_list("name")
+    regions = Regions.objects.values_list("name", "region_id").order_by("region_id")
     return render(request, 'logistics/liquidity.html',
                   context={'region_selected': region, 'regions': regions, 'liquidity': liquidity_to_page})
 
