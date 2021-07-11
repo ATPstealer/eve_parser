@@ -1,0 +1,45 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Parser Stats</title>
+</head>
+
+<body>
+<h2> Liquidity on {{ region_id }} </h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Type_id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Day turnover, millions</th>
+      <th scope="col">Day volume</th>
+      <th scope="col">Median price</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for liq in liquidity %}
+    <tr>
+      <td>{{ liq.type_id }}</td>
+      <th scope="row">{{ liq.name }}</th>
+      <td>{{ liq.day_turnover }}</td>
+      <td>{{ liq.day_volume }}</td>
+      <td>{{ liq.price }}</td>
+    </tr>
+    <div class="row">
+        <div class="col">{{ stats.0 }}</div>
+        <div class="col">{{ stats.2 }}</div>
+        <div class="col">{{ stats.3 }}</div>
+        <div class="col">{{ stats.1 }}</div>
+    </div>
+{% endfor %}
+  </tbody>
+</table>
+
+
+</body>
+
+</html>

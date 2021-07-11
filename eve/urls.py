@@ -20,7 +20,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('eve_parser/', include('eve_parser.urls')),
-    path('eve_parser/', include('logistics.urls')),
+    path('logistics/', include('logistics.urls')),
 
     path('', views.redirect_pars),
 
