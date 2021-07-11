@@ -3,6 +3,13 @@ from django.db import models
 
 class Regions(models.Model):
     region_id = models.BigIntegerField()
+    name = models.CharField(
+        max_length=50
+    )
+    description = models.TextField(
+        max_length=256
+    )
+    constellations = models.JSONField()
 
 
 class Types(models.Model):
