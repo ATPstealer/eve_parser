@@ -33,4 +33,4 @@ def liquidity(request):
 
 
 def planing(request):
-    return render(request, 'logistics/liquidity.html', context={})
+    return render(request, 'logistics/planing.html', context={})
