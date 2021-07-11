@@ -29,6 +29,7 @@ def run(*args):
 
 
 def liquidity_calc(region_id, type_id, month_ago, market_history):
+    print(region_id, type_id)
     days = 0
     volume = 0
     day_range = timedelta(0)
