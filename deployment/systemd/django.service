@@ -3,7 +3,7 @@ Description=django-app
 
 [Service]
 WorkingDirectory=/root/eve_parser/
-ExecStart=python3 manage.py runserver 188.34.204.103:8000
+ExecStart=python3 manage.py runserver 127.0.0.1:8000
 Restart=always
 
 [Install]
