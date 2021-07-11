@@ -22,10 +22,5 @@ urlpatterns = [
     path('eve_parser/', include('eve_parser.urls')),
     path('logistics/', include('logistics.urls')),
 
-    path('', views.redirect_pars),
-
-    path('hello/', views.hello),
-    path('time/', views.current_datetime),
-    path('time/plus/<int:num>/', views.hours_ahead),
-
+    path('', views.index),
 ]
