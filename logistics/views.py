@@ -67,9 +67,9 @@ def planing(request):
         if count_display > config.counts_on_page:
             break
         name = Types.objects.values_list("name").filter(type_id=log[0])
-        logistics_to_page.append({'name': name[0][0], 'type_id': log[0], 'price_from': log[1],
-                                  'price_to': log[2], 'price_diff': log[3], 'liquidity_from': log[4],
-                                  'liquidity_to': log[5], 'profit_from': log[6]})
+        logistics_to_page.append({'name': name[0][0], 'type_id': log[0], 'price_from': "%.2f" % log[1],
+                                  'price_to': "%.2f" % log[2], 'price_diff': "%.2f" % log[3], 'liquidity_from': "%.2f" % log[4],
+                                  'liquidity_to': "%.2f" % log[5], 'profit_from': "%.2f" % log[6]})
 
     regions = Regions.objects.values_list("name", "region_id").order_by("region_id")
     return render(request, 'logistics/planing.html',
