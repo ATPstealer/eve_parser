@@ -1,16 +1,16 @@
 # TIMEZONE: UTC
-# Everyday marker parse and liquidity calculation
-0 21 * * * root cd /root/eve_parser && python3 manage.py runscript parser_market
-0 0 * * * root cd /root/eve_parser && python3 manage.py runscript liquidity
+# Everyday marker parse
+# 0 21 * * * root cd /root/eve_parser && python3 manage.py runscript parser_market
 
-# Logistic calc every 2 days
+# Liquidity and logistics calculation every 2 days
 # Market history refresh every day at 11:00 UTC (14:00 MSK)
-15 11 */2 * * root cd /root/eve_parser && python3 manage.py runscript parser_market_history
-0 20 1-31/2 * * root cd /root/eve_parser && python3 manage.py runscript logistics_planning --script-args 10000002 "*" 1
+0 12 */2 * * root cd /root/eve_parser && python3 manage.py runscript parser_market_history
+0 12 1-31/2 * * root cd /root/eve_parser && python3 manage.py runscript liquidity
+59 23 1-31/2 * * root cd /root/eve_parser && python3 manage.py runscript logistics_planning --script-args 10000002 "*" 1
 
 # One time in month refresh types, top_types and regions
 0 0 1 * * root cd /root/eve_parser && python3 manage.py runscript parser_market_history --script-args 10000002 all
-0 12 1 * * root cd /root/eve_parser && python3 manage.py runscript liquidity jita_all
+0 12 1 * * root cd /root/eve_parser && python3 manage.py runscript liquidity --script-args jita_all
 0 0 2 * * root cd /root/eve_parser && python3 manage.py runscript parser_regions
 0 1 2 * * root cd /root/eve_parser && python3 manage.py runscript parser_types
 
