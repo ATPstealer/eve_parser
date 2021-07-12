@@ -56,10 +56,10 @@ def insert_in_base(types_description_json):
 
 
 def clear_types():
-    orders_for_delete = Types.objects.filter(parse_time__lte=datetime.now(timezone.utc) - timedelta(days=1))
-    for order in orders_for_delete:
-        print("Delete: " + str(order.order_id))
-        order.delete()
+    types_for_delete = Types.objects.filter(parse_time__lte=datetime.now(timezone.utc) - timedelta(days=1))
+    for item_type in types_for_delete:
+        print("Delete: " + str(item_type.type_id))
+        item_type.delete()
 
 
 def top_types():

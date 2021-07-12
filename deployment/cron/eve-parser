@@ -13,4 +13,3 @@
 0 12 1 * * root cd /root/eve_parser && python3 manage.py runscript liquidity --script-args jita_all
 0 0 2 * * root cd /root/eve_parser && python3 manage.py runscript parser_regions
 0 1 2 * * root cd /root/eve_parser && python3 manage.py runscript parser_types
-
