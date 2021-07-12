@@ -85,7 +85,7 @@ def planing(request):
                                       'liquidity_from': "%.2f" % log[5],
                                       'liquidity_to': "%.2f" % log[4], 'profit_from': "%.2f" % log[6]})
     print(logistics_planing_array)
-    regions = Regions.objects.values_list("name", "region_id").order_by("region_id")
+    regions = Regions.objects.values_list("name", "region_id").order_by("name")
     return render(request, 'logistics/planing.html',
                   context={'region_from_selected': region_from, 'region_to_selected': region_to,
                            'regions': regions, 'logistics': logistics_to_page})
