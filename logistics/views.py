@@ -58,7 +58,7 @@ def planing(request):
 
     count_display = 0
     logistics_to_page = []
-    if region_from < region_to:
+    if region_id_from < region_id_to:
         logistics_planing_array = LogisticsPlanning.objects.values_list(
             "type_id", "price_from", "price_to", "price_diff", "liquidity_from", "liquidity_to", "profit_from").filter(
             region_id_from=int(region_id_from), region_id_to=int(region_id_to)).order_by("-profit_from")
