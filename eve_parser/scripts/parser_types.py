@@ -28,6 +28,8 @@ def parse_types():
                 types = Types.objects.create(type_id=item_type,
                                              packaged_volume=0, volume=0, group_id=0, market_group_id=0, icon_id=0)
                 types.save()
+            else:
+                Types.objects.filter(type_id=item_type).update()
 
 
 def parse_types_description():
