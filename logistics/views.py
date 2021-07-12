@@ -81,7 +81,7 @@ def planing(request):
                 break
             name = Types.objects.values_list("name").filter(type_id=log[0])
             logistics_to_page.append({'name': name[0][0], 'type_id': log[0], 'price_from': "%.2f" % log[2],
-                                      'price_to': "%.2f" % log[1], 'price_diff': "%.2f" % (-1) * log[3],
+                                      'price_to': "%.2f" % log[1], 'price_diff': "%.2f" % (-1 * log[3]),
                                       'liquidity_from': "%.2f" % log[5],
                                       'liquidity_to': "%.2f" % log[4], 'profit_from': "%.2f" % log[6]})
     print(logistics_planing_array)
