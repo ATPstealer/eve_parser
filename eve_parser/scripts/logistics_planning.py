@@ -34,11 +34,11 @@ def calculate_logistics(region_from, region_to, day_turnover_threshold):
         item_describe = Types.objects.get(type_id=item_type[0])
         try:
             liquidity_from = Liquidity.objects.get(type_id=item_type[0], region_id=region_from)
-        except models.ObjectDoesNotExist as e:
+        except models.ObjectDoesNotExist:
             continue
         try:
             liquidity_to = Liquidity.objects.get(type_id=item_type[0], region_id=region_to)
-        except models.ObjectDoesNotExist as e:
+        except models.ObjectDoesNotExist:
             continue
 
         if liquidity_to.day_turnover >= day_turnover_threshold and liquidity_from.day_turnover >= day_turnover_threshold:
