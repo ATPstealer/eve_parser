@@ -6,12 +6,12 @@ from eve_parser.include.parser import Parser
 
 def run(*args):
     start = datetime.now()
-    region_from = [args[0]]
-    region_to = [args[1]]
+    region_from = [[args[0]]]
+    region_to = [[args[1]]]
     day_turnover_threshold = float(args[2])
-    if region_from[0] == "*":
+    if region_from[0][0] == "*":
         region_from = Regions.objects.values_list("region_id")
-    if region_to[0] == "*":
+    if region_to[0][0] == "*":
         region_to = Regions.objects.values_list("region_id")
     for reg_from in region_from:
         for reg_to in region_to:
@@ -29,7 +29,6 @@ def calculate_logistics(region_from, region_to, day_turnover_threshold):
         if parser_write == 50:
             Parser.parser_status("Calculate logistics", "From:" + str(region_from), region_to, item_type[0])
             parser_write = 0
-        print("Item type: %s" % item_type[0])
         # get data from database
         item_describe = Types.objects.get(type_id=item_type[0])
         try:
