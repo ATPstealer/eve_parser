@@ -29,7 +29,7 @@ def parse_types():
                                              packaged_volume=0, volume=0, group_id=0, market_group_id=0, icon_id=0)
                 types.save()
             else:
-                Types.objects.filter(type_id=item_type).update()
+                Types.objects.filter(type_id=item_type).update(parse_time=datetime.now(timezone.utc))
 
 
 def parse_types_description():
