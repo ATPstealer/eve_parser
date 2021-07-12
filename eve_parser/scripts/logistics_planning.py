@@ -27,7 +27,7 @@ def calculate_logistics(region_from, region_to, day_turnover_threshold):
     for item_type in TopTypes.objects.values_list("type_id"):
         parser_write += 1
         if parser_write == 50:
-            Parser.parser_status("Calculate logistics", "item_type", region_to, item_type[0])
+            Parser.parser_status("Calculate logistics", "From:" + str(region_from), region_to, item_type[0])
             parser_write = 0
         print("Item type: %s" % item_type[0])
         # get data from database
