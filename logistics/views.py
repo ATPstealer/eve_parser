@@ -60,7 +60,8 @@ def planing(request):
     logistics_to_page = []
     if region_id_from < region_id_to:
         logistics_planing_array = LogisticsPlanning.objects.values_list(
-            "type_id", "price_from", "price_to", "price_diff", "liquidity_from", "liquidity_to", "profit_from", "packaged_volume")\
+            "type_id", "price_from", "price_to", "price_diff", "liquidity_from", "liquidity_to", "profit_from",
+            "packaged_volume", "day_volume_to")\
             .filter(region_id_from=int(region_id_from), region_id_to=int(region_id_to)).order_by("-profit_from")
         for log in logistics_planing_array:
             count_display += 1
@@ -70,11 +71,13 @@ def planing(request):
             logistics_to_page.append({'name': name[0][0], 'type_id': log[0], 'price_from': "%.2f" % log[1],
                                       'price_to': "%.2f" % log[2], 'price_diff': "%.2f" % log[3],
                                       'liquidity_from': "%.2f" % log[4], 'packaged_volume': "%.2f" % log[7],
-                                      'liquidity_to': "%.2f" % log[5], 'profit_from': "%.2f" % log[6]})
+                                      'liquidity_to': "%.2f" % log[5], 'profit_from': "%.2f" % log[6],
+                                      'day_volume_to': "%.2f" % log[8]})
     else:
         logistics_planing_array = LogisticsPlanning.objects.values_list(
-            "type_id", "price_from", "price_to", "price_diff", "liquidity_from", "liquidity_to", "profit_to", "packaged_volume").\
-            filter(region_id_from=int(region_id_to), region_id_to=int(region_id_from)).order_by("-profit_to")
+            "type_id", "price_from", "price_to", "price_diff", "liquidity_from", "liquidity_to", "profit_to",
+            "packaged_volume", "day_volume_to")\
+            .filter(region_id_from=int(region_id_to), region_id_to=int(region_id_from)).order_by("-profit_to")
         for log in logistics_planing_array:
             count_display += 1
             if count_display > config.counts_on_page:
@@ -83,7 +86,8 @@ def planing(request):
             logistics_to_page.append({'name': name[0][0], 'type_id': log[0], 'price_from': "%.2f" % log[2],
                                       'price_to': "%.2f" % log[1], 'price_diff': "%.2f" % (-1 * log[3]),
                                       'liquidity_from': "%.2f" % log[5], 'packaged_volume': "%.2f" % log[7],
-                                      'liquidity_to': "%.2f" % log[4], 'profit_from': "%.2f" % log[6]})
+                                      'liquidity_to': "%.2f" % log[4], 'profit_from': "%.2f" % log[6],
+                                      'day_volume_to': "%.2f" % log[8]})
     print(logistics_planing_array)
     regions = Regions.objects.values_list("name", "region_id").order_by("region_id")
     return render(request, 'logistics/planing.html',
