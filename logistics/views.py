@@ -76,7 +76,7 @@ def planing(request):
     else:
         logistics_planing_array = LogisticsPlanning.objects.values_list(
             "type_id", "price_from", "price_to", "price_diff", "liquidity_from", "liquidity_to", "profit_to",
-            "packaged_volume", "day_volume_to")\
+            "packaged_volume", "day_volume_from")\
             .filter(region_id_from=int(region_id_to), region_id_to=int(region_id_from)).order_by("-profit_to")
         for log in logistics_planing_array:
             count_display += 1
