@@ -69,7 +69,7 @@ def planing(request):
             name = Types.objects.values_list("name").filter(type_id=log[0])
             logistics_to_page.append({'name': name[0][0], 'type_id': log[0], 'price_from': "%.2f" % log[1],
                                       'price_to': "%.2f" % log[2], 'price_diff': "%.2f" % log[3],
-                                      'liquidity_from': "%.2f" % log[4], 'packaged_volume': log[7],
+                                      'liquidity_from': "%.2f" % log[4], 'packaged_volume': "%.2f" % log[7],
                                       'liquidity_to': "%.2f" % log[5], 'profit_from': "%.2f" % log[6]})
     else:
         logistics_planing_array = LogisticsPlanning.objects.values_list(
@@ -82,7 +82,7 @@ def planing(request):
             name = Types.objects.values_list("name").filter(type_id=log[0])
             logistics_to_page.append({'name': name[0][0], 'type_id': log[0], 'price_from': "%.2f" % log[2],
                                       'price_to': "%.2f" % log[1], 'price_diff': "%.2f" % (-1 * log[3]),
-                                      'liquidity_from': "%.2f" % log[5], 'packaged_volume': log[7],
+                                      'liquidity_from': "%.2f" % log[5], 'packaged_volume': "%.2f" % log[7],
                                       'liquidity_to': "%.2f" % log[4], 'profit_from': "%.2f" % log[6]})
     print(logistics_planing_array)
     regions = Regions.objects.values_list("name", "region_id").order_by("region_id")
