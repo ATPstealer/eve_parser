@@ -74,6 +74,7 @@ def planing(request):
                                       'liquidity_to': "%.2f" % log[5], 'profit_from': "%.2f" % log[6],
                                       'day_volume_to': "%.2f" % log[8]})
     else:
+        # switch from and to
         logistics_planing_array = LogisticsPlanning.objects.values_list(
             "type_id", "price_from", "price_to", "price_diff", "liquidity_from", "liquidity_to", "profit_to",
             "packaged_volume", "day_volume_from")\
