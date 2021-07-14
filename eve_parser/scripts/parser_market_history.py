@@ -26,16 +26,11 @@ def parse_region_history(args):
     else:
         parse_type_array = TopTypes.objects.values_list("type_id")
     print("Region parse start: " + str(region))
-    parser_write = 0
     for item_type in parse_type_array:
         dict_get_args = {"type_id": item_type[0]}
         market_history_json = parser.evetech_req("/markets/" + str(region) + "/history/", dict_get_args)
         if "error" in market_history_json:
             continue
-        parser_write += 1
-        if parser_write == 50:
-            Parser.parser_status("Market history", "item_type", region, item_type[0])
-            parser_write = 0
         print("Item: " + str(region) + " " + str(item_type[0]))
         insert_in_base(json.loads(market_history_json), region, item_type[0])
     Parser.parser_date_status("Market history", region, 0)

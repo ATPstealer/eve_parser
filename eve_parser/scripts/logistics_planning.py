@@ -25,12 +25,7 @@ def calculate_logistics(region_from, region_to, day_turnover_threshold):
     print("Calculate logistics from %s to %s" % (region_from, region_to))
     if not check_need(region_from, region_to):
         return
-    parser_write = 0
     for item_type in TopTypes.objects.values_list("type_id"):
-        parser_write += 1
-        if parser_write == 50:
-            Parser.parser_status("Calculate logistics", "From:" + str(region_from), region_to, item_type[0])
-            parser_write = 0
         # get data from database
         item_describe = Types.objects.get(type_id=item_type[0])
         try:
@@ -81,7 +76,7 @@ def check_need(region_from, region_to):
         log_time = ParserDateStatus.objects.get(parser_name="Calculate logistic", region_id=region_from,
                                                 region_id_log=region_to).parse_time
     except models.ObjectDoesNotExist:
-        return True
+        return False
     if log_time > liq_to_time or log_time > liq_from_time:
         return False
     else:
