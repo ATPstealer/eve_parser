@@ -64,17 +64,17 @@ def check_need(region_from, region_to):
         liq_to_time = ParserDateStatus.objects.get(parser_name="Liquidity calculation",
                                                    region_id=region_to).parse_time
     except models.ObjectDoesNotExist:
-        return True
+        return False
     try:
         liq_from_time = ParserDateStatus.objects.get(parser_name="Liquidity calculation",
                                                      region_id=region_from).parse_time
     except models.ObjectDoesNotExist:
-        return True
+        return False
     try:
         log_time = ParserDateStatus.objects.get(parser_name="Calculate logistic", region_id=region_from,
                                                 region_id_log=region_to).parse_time
     except models.ObjectDoesNotExist:
-        return False
+        return True
     if log_time > liq_to_time or log_time > liq_from_time:
         return False
     else:
