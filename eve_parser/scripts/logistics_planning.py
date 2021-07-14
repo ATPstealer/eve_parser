@@ -24,7 +24,7 @@ def run(*args):
 
 def calculate_logistics(region_from, region_to, day_turnover_threshold):
     print("Calculate logistics from %s to %s" % (region_from, region_to))
-    if not check_need():
+    if not check_need(region_from, region_to):
         return
     parser_write = 0
     for item_type in TopTypes.objects.values_list("type_id"):
