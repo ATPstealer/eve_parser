@@ -14,7 +14,6 @@ def run(*args):
             types_array = Types.objects.values_list("type_id")
     parser_write = 0
     for region in region_array:
-        Parser.parser_date_status("Liquidity calculation", region[0], 0)
         for item_type in types_array:
             month_ago = datetime.utcnow() - timedelta(days=30)
             market_history = MarketHistory.objects.filter(region_id=region[0], type_id=item_type[0],
@@ -25,7 +24,7 @@ def run(*args):
             if parser_write == 50:
                 Parser.parser_status("Liquidity calculation", "item_type", region[0], item_type[0])
                 parser_write = 0
-
+        Parser.parser_date_status("Liquidity calculation", region[0], 0)
     print("start at: %s\n end at: %s" % (start, datetime.now()))
     Parser.parser_status("Liquidity calculation", "Done \nStart at: %s\n end at: %s" % (start, datetime.now()), 0, 0)
 

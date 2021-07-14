@@ -38,6 +38,7 @@ def parse_region_history(args):
             parser_write = 0
         print("Item: " + str(region) + " " + str(item_type[0]))
         insert_in_base(json.loads(market_history_json), region, item_type[0])
+    Parser.parser_date_status("Market history", region, 0)
 
 
 def insert_in_base(market_history_data, region, item_type):

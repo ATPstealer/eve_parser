@@ -27,6 +27,7 @@ def paginator(region):
             break
         print("Parse market in " + str(region) + " page " + str(page))
         insert_in_base(json.loads(market_json), region)
+    Parser.parser_date_status("Market", region, 0)
 
 
 def insert_in_base(market_data, region):
