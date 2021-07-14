@@ -1,7 +1,8 @@
 from config import Config
 import requests
 import time
-from eve_parser.models import ParserStatus
+from datetime import datetime, timezone
+from eve_parser.models import ParserStatus, ParserDateStatus
 
 
 class Parser:
@@ -38,3 +39,12 @@ class Parser:
         else:
             ParserStatus.objects.filter(name=name).update(name=name, describe=describe,
                                                           region_id=region_id, now_parse=now_parse)
+
+    @staticmethod
+    def parser_date_status(name, region_id, region_id_log):
+        par = ParserDateStatus.objects.filter(name=name, region_id=region_id, region_id_log=region_id_log)
+        if len(par) == 0:
+            ParserDateStatus.objects.create(name=name, region_id=region_id, region_id_log=region_id_log)
+        else:
+            ParserDateStatus.objects.filter(name=name, region_id=region_id, region_id_log=region_id_log)\
+                .update(parse_time=datetime.now(timezone.utc))

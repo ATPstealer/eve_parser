@@ -114,3 +114,14 @@ class LogisticsPlanning(models.Model):
     day_volume_to = models.FloatField()
     profit_from = models.FloatField()
     profit_to = models.FloatField()
+
+
+class ParserDateStatus(models.Model):
+    parser_name = models.CharField(
+        max_length=50
+    )
+    region_id = models.IntegerField()
+    region_id_log = models.IntegerField()
+    parse_time = models.DateTimeField(
+        auto_now=True
+    )

@@ -24,6 +24,7 @@ def run(*args):
             if parser_write == 50:
                 Parser.parser_status("Liquidity calculation", "item_type", region[0], item_type[0])
                 parser_write = 0
+        Parser.parser_date_status("Liquidity calculation", region, 0)
     print("start at: %s\n end at: %s" % (start, datetime.now()))
     Parser.parser_status("Liquidity calculation", "Done \nStart at: %s\n end at: %s" % (start, datetime.now()), 0, 0)
 
