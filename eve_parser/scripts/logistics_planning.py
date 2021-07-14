@@ -69,7 +69,7 @@ def calculate_logistics(region_from, region_to, day_turnover_threshold):
 def check_need(region_from, region_to):
     liq_to = ParserDateStatus.objects.get(parser_name="Liquidity calculation", region_id=region_to)
     print(liq_to.parse_time)
-    log = ParserDateStatus.objects.get(parser_name="Calculate logistics", region_id=region_from, region_id_log=region_to)
+    log = ParserDateStatus.objects.get(parser_name="Calculate logistic", region_id=region_from, region_id_log=region_to)
     if liq_to.parse_time < log.parse_time:
         print(10)
     return True
