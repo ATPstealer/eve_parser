@@ -3,8 +3,7 @@ from eve_parser.models import ParserStatus, ParserDateStatus
 
 
 def stats(request):
-    p = ParserDateStatus.objects.all().order_by('-parse_time')
-    p = p.values_list()
+    p = ParserDateStatus.objects.all().order_by('-parse_time').values_list()
     return render(request, 'eve_parser/stats.html', context={'statistics': p})
 
 
