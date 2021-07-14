@@ -24,7 +24,7 @@ def run(*args):
 
 def calculate_logistics(region_from, region_to, day_turnover_threshold):
     print("Calculate logistics from %s to %s" % (region_from, region_to))
-    liq = ParserDateStatus.objects.get(name="Liquidity calculation", region_id=region_to)
+    liq = ParserDateStatus.objects.get(parser_name="Liquidity calculation", region_id=region_to)
     print(liq)
     parser_write = 0
     for item_type in TopTypes.objects.values_list("type_id"):
