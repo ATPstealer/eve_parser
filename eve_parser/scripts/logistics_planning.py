@@ -67,14 +67,22 @@ def calculate_logistics(region_from, region_to, day_turnover_threshold):
 
 
 def check_need(region_from, region_to):
-    print(region_from, region_to)
-    liq_to = ParserDateStatus.objects.get(parser_name="Liquidity calculation", region_id=region_from)
-    print(liq_to.parse_time)
-
-    log = ParserDateStatus.objects.get(parser_name="Calculate logistic", region_id=region_from, region_id_log=region_to)
-    print(log.parse_time)
-    if liq_to.parse_time > log.parse_time:
-        print(10)
+    try:
+        liq_to_time = ParserDateStatus.objects.get(parser_name="Liquidity calculation",
+                                                   region_id=region_to).parse_time
+    except models.ObjectDoesNotExist:
+        return True
+    try:
+        liq_from_time = ParserDateStatus.objects.get(parser_name="Liquidity calculation",
+                                                     region_id=region_from).parse_time
+    except models.ObjectDoesNotExist:
+        return True
+    try:
+        log_time = ParserDateStatus.objects.get(parser_name="Calculate logistic", region_id=region_from,
+                                                region_id_log=region_to).parse_time
+    except models.ObjectDoesNotExist:
+        return True
+    if log_time > liq_to_time or log_time > liq_from_time:
+        return False
     else:
-        print(1)
-    return True
+        return True
