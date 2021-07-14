@@ -32,15 +32,6 @@ class Parser:
         return r.text
 
     @staticmethod
-    def parser_status(name, describe, region_id, now_parse):
-        p = ParserStatus.objects.filter(name=name)
-        if len(p) == 0:
-            ParserStatus.objects.create(name=name, describe=describe, region_id=region_id, now_parse=now_parse)
-        else:
-            ParserStatus.objects.filter(name=name).update(name=name, describe=describe,
-                                                          region_id=region_id, now_parse=now_parse)
-
-    @staticmethod
     def parser_date_status(parser_name, region_id, region_id_log):
         par = ParserDateStatus.objects.filter(parser_name=parser_name, region_id=region_id, region_id_log=region_id_log)
         if len(par) == 0:

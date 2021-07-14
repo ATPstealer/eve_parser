@@ -5,7 +5,6 @@ from eve_parser.include.parser import Parser
 
 
 def run(*args):
-    start = datetime.now()
     region_array = Regions.objects.values_list("region_id")
     types_array = TopTypes.objects.values_list("type_id")
     if len(args) > 0:
@@ -20,8 +19,6 @@ def run(*args):
             market_history = sorted(market_history, key=operator.attrgetter('date'))
             liquidity_calc(region[0], item_type[0], month_ago, market_history)
         Parser.parser_date_status("Liquidity calculation", region[0], 0)
-    print("start at: %s\n end at: %s" % (start, datetime.now()))
-    Parser.parser_status("Liquidity calculation", "Done \nStart at: %s\n end at: %s" % (start, datetime.now()), 0, 0)
 
 
 def liquidity_calc(region_id, type_id, month_ago, market_history):
