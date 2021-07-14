@@ -41,10 +41,10 @@ class Parser:
                                                           region_id=region_id, now_parse=now_parse)
 
     @staticmethod
-    def parser_date_status(name, region_id, region_id_log):
-        par = ParserDateStatus.objects.filter(name=name, region_id=region_id, region_id_log=region_id_log)
+    def parser_date_status(parser_name, region_id, region_id_log):
+        par = ParserDateStatus.objects.filter(parser_name=parser_name, region_id=region_id, region_id_log=region_id_log)
         if len(par) == 0:
-            ParserDateStatus.objects.create(name=name, region_id=region_id, region_id_log=region_id_log)
+            ParserDateStatus.objects.create(parser_name=parser_name, region_id=region_id, region_id_log=region_id_log)
         else:
-            ParserDateStatus.objects.filter(name=name, region_id=region_id, region_id_log=region_id_log)\
+            ParserDateStatus.objects.filter(parser_name=parser_name, region_id=region_id, region_id_log=region_id_log)\
                 .update(parse_time=datetime.now(timezone.utc))
