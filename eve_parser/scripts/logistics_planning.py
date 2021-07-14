@@ -24,8 +24,8 @@ def run(*args):
 
 def calculate_logistics(region_from, region_to, day_turnover_threshold):
     print("Calculate logistics from %s to %s" % (region_from, region_to))
-    liq = ParserDateStatus.objects.get(parser_name="Liquidity calculation", region_id=region_to)
-    print(liq.parse_time)
+    if not check_need():
+        return
     parser_write = 0
     for item_type in TopTypes.objects.values_list("type_id"):
         parser_write += 1
@@ -64,3 +64,9 @@ def calculate_logistics(region_from, region_to, day_turnover_threshold):
                     day_volume_from=liquidity_from.day_volume, day_volume_to=liquidity_to.day_volume,
                     profit_from=float((liquidity_from.price - liquidity_to.price) * (-1) * liquidity_to.day_volume) / 1000000,
                     profit_to=float((liquidity_from.price - liquidity_to.price) * liquidity_from.day_volume) / 1000000)
+
+
+def check_need(region_from, region_to):
+    liq_to = ParserDateStatus.objects.get(parser_name="Liquidity calculation", region_id=region_to)
+    print(liq_to.parse_time)
+    log = ParserDateStatus.objects.get(parser_name="Calculate logistics", region_id=region_from, region_id_log=region_to)
