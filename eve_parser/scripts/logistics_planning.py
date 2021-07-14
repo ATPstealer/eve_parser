@@ -72,3 +72,4 @@ def check_need(region_from, region_to):
     log = ParserDateStatus.objects.get(parser_name="Calculate logistics", region_id=region_from, region_id_log=region_to)
     if liq_to.parse_time < log.parse_time:
         print(10)
+    return True
