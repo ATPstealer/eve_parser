@@ -5,6 +5,7 @@ from datetime import datetime, timezone, timedelta
 
 
 def run(*args):
+    Parser.parser_date_status("START Market", 0, 0)
     start = datetime.now()
     if len(args) == 0:
         for region in Regions.objects.values_list('region_id', flat=True):
@@ -13,6 +14,7 @@ def run(*args):
         paginator(args[0])
     print("start at: %s\n end at: %s" % (start, datetime.now()))
     clear_market()
+    Parser.parser_date_status("END Market", 0, 0)
 
 
 def paginator(region):

@@ -5,6 +5,7 @@ from datetime import datetime
 
 
 def run(*args):
+    Parser.parser_date_status("START Market history", 0, 0)
     start = datetime.now()
     if len(args) == 0:
         for region in Regions.objects.values_list("region_id"):
@@ -12,7 +13,7 @@ def run(*args):
     else:
         parse_region_history(args)
     print("start at: %s\n end at: %s" % (start, datetime.now()))
-
+    Parser.parser_date_status("END Market history", 0, 0)
 
 def parse_region_history(args):
     parser = Parser()

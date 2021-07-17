@@ -7,6 +7,7 @@ from eve_parser.include.parser import Parser
 def run(*args):
     region_from = [[args[0]]]
     region_to = [[args[1]]]
+    Parser.parser_date_status("START log plan from %s to %s" % (args[0], args[1]), 0, 0)
     day_turnover_threshold = float(args[2])
     if region_from[0][0] == "*":
         region_from = Regions.objects.values_list("region_id")
@@ -16,6 +17,7 @@ def run(*args):
         for reg_to in region_to:
             if int(reg_from[0]) < int(reg_to[0]):
                 calculate_logistics(reg_from[0], reg_to[0], day_turnover_threshold)
+    Parser.parser_date_status("END log plan from %s to %s" % (args[0], args[1]), 0, 0)
 
 
 def calculate_logistics(region_from, region_to, day_turnover_threshold):

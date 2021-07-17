@@ -2,7 +2,7 @@
 # Everyday marker parse
 # 0 21 * * * root cd /root/eve_parser && python3 manage.py runscript parser_market
 
-# Liquidity every 2 days
+# Market history and liquidity every 2 days
 # Market history refresh every day at 11:00 UTC (14:00 MSK)
 0 12 1-31/2 * * root cd /root/eve_parser && python3 manage.py runscript parser_market_history
 0 12 2-30/2 * * root cd /root/eve_parser && python3 manage.py runscript liquidity
