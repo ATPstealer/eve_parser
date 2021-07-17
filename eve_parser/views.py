@@ -4,8 +4,6 @@ from eve_parser.models import ParserStatus, ParserDateStatus
 
 def stats(request):
     p = ParserDateStatus.objects.all().order_by('-parse_time').values_list()
-    for parse_time in p:
-        parse_time[4] = parse_time[4].strftime("%Y-%m-%d, %H:%M:%S")
     return render(request, 'eve_parser/stats.html', context={'statistics': p})
 
 
