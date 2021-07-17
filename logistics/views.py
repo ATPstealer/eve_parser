@@ -100,7 +100,7 @@ def planing(request):
     if len(parse_time) == 0:
         parse_time = "Never"
     else:
-        parse_time = parse_time[0].parse_time
+        parse_time = parse_time[0].parse_time.strftime("%Y-%m-%d, %H:%M:%S")
     return render(request, 'logistics/planing.html',
                   context={'region_from_selected': region_from, 'region_to_selected': region_to,
                            'regions': regions, 'logistics': logistics_to_page, 'parse_time': parse_time})
