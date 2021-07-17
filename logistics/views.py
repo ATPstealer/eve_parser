@@ -30,8 +30,7 @@ def liquidity(request):
                                   'day_turnover': "%.2f" % liq[2], 'price': "%.2f" % liq[3]})
 
     regions = Regions.objects.values_list("name", "region_id").order_by("region_id")
-    parse_time = ParserDateStatus.objects.values_list("parse_time").\
-        filter(parser_name="Liquidity calculation", region_id=region_id)[0][0].strftime("%Y-%m-%d, %H:%M:%S")
+    parse_time = ParserDateStatus.objects.filter(parser_name="Liquidity calculation", region_id=region_id)
     if len(parse_time) == 0:
         parse_time = "Never"
     else:
