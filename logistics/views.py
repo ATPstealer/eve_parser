@@ -19,7 +19,6 @@ def liquidity(request):
 
     liquidity_array = Liquidity.objects.values_list("type_id", "day_volume", "day_turnover", "price").\
         filter(region_id=int(region_id)).order_by("-day_turnover")
-    print(liquidity_array)
     count_display = 0
     liquidity_to_page = []
     for liq in liquidity_array:
@@ -33,8 +32,9 @@ def liquidity(request):
     regions = Regions.objects.values_list("name", "region_id").order_by("region_id")
     parse_time = ParserDateStatus.objects.values_list("parse_time").filter(parser_name="Liquidity calculation",
                                                                            region_id=region_id)
+    print(parse_time)
     return render(request, 'logistics/liquidity.html', context={'region_selected': region, 'regions': regions,
-                  'liquidity': liquidity_to_page, 'parse_time': parse_time[0].strftime("%m/%d/%Y, %H:%M:%S")})
+                  'liquidity': liquidity_to_page, 'parse_time': parse_time[0]})
 
 
 def planing(request):
