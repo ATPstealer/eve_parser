@@ -31,12 +31,12 @@ def liquidity(request):
 
     regions = Regions.objects.values_list("name", "region_id").order_by("region_id")
     try:
-        parse_time = ParserDateStatus.objects.values_list("parse_time").filter(parser_name="Liquidity calculation",
-                                                                               region_id=region_id)
+        parse_time = ParserDateStatus.objects.values_list("parse_time").\
+            filter(parser_name="Liquidity calculation", region_id=region_id)[0][0].strftime("%Y-%m-%d, %H:%M:%S")
     except models.ObjectDoesNotExist:
-        parse_time = ""
+        parse_time = "Never"
     return render(request, 'logistics/liquidity.html', context={'region_selected': region, 'regions': regions,
-                  'liquidity': liquidity_to_page, 'parse_time': parse_time[0][0].strftime("%m/%d/%Y, %H:%M:%S")})
+                  'liquidity': liquidity_to_page, 'parse_time': parse_time})
 
 
 def planing(request):
