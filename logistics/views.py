@@ -96,11 +96,7 @@ def planing(request):
                                       'day_volume_to': "%.2f" % log[8]})
     print(logistics_planing_array)
     regions = Regions.objects.values_list("name", "region_id").order_by("region_id")
-    parse_time = ParserDateStatus.objects.values_list("parse_time").\
-       filter(parser_name="Calculate logistic", region_id=region_id_from, region_id_log=region_id_to)[0][0].\
-       strftime("%Y-%m-%d, %H:%M:%S")
-    if len(parse_time) == 0:
-        parse_time = "Never"
+    parse_time = ParserDateStatus.objects.filter(parser_name="Calculate logistic", region_id=region_id_from, region_id_log=region_id_to)
     return render(request, 'logistics/planing.html',
                   context={'region_from_selected': region_from, 'region_to_selected': region_to,
                            'regions': regions, 'logistics': logistics_to_page, 'parse_time': parse_time})
