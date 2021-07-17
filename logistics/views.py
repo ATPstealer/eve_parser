@@ -2,6 +2,7 @@ from django.shortcuts import render
 from eve_parser.models import Liquidity, Types, Regions, LogisticsPlanning, ParserDateStatus
 from logistics.models import models
 from config import Config
+from datetime import datetime
 
 
 def liquidity(request):
@@ -33,7 +34,7 @@ def liquidity(request):
     parse_time = ParserDateStatus.objects.values_list("parse_time").filter(parser_name="Liquidity calculation",
                                                                            region_id=region_id)
     return render(request, 'logistics/liquidity.html', context={'region_selected': region, 'regions': regions,
-                  'liquidity': liquidity_to_page, 'parse_time': parse_time})
+                  'liquidity': liquidity_to_page, 'parse_time': parse_time[0].strftime("%m/%d/%Y, %H:%M:%S")})
 
 
 def planing(request):
