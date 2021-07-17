@@ -35,7 +35,7 @@ def liquidity(request):
                                                                                region_id=region_id)
     except models.ObjectDoesNotExist:
         parse_time = ""
-    print(parse_time)
+    print(parse_time[0])
     return render(request, 'logistics/liquidity.html', context={'region_selected': region, 'regions': regions,
                   'liquidity': liquidity_to_page, 'parse_time': parse_time})
 
