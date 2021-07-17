@@ -36,7 +36,7 @@ def liquidity(request):
     except models.ObjectDoesNotExist:
         parse_time = ""
     return render(request, 'logistics/liquidity.html', context={'region_selected': region, 'regions': regions,
-                  'liquidity': liquidity_to_page, 'parse_time': parse_time[0]})
+                  'liquidity': liquidity_to_page, 'parse_time': parse_time[0][0].strftime("%m/%d/%Y, %H:%M:%S")})
 
 
 def planing(request):
