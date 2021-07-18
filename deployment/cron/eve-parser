@@ -26,5 +26,5 @@
 # One time in month refresh types, top_types and regions
 0 0 1 * * root cd /root/eve_parser && python3 manage.py runscript parser_market_history --script-args 10000002 all
 0 12 1 * * root cd /root/eve_parser && python3 manage.py runscript liquidity --script-args jita_all
-0 0 2 * * root cd /root/eve_parser && python3 manage.py runscript parser_regions
-0 1 2 * * root cd /root/eve_parser && python3 manage.py runscript parser_types
+10 0 2 * * root cd /root/eve_parser && python3 manage.py runscript parser_regions
+10 1 2 * * root cd /root/eve_parser && python3 manage.py runscript parser_types
