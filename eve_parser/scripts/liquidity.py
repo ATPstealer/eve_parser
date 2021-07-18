@@ -1,5 +1,5 @@
 import operator
-from eve_parser.models import MarketHistory, TopTypes, Regions, Liquidity, Types
+from eve_parser.models import MarketHistory, TopTypes, Regions, Liquidity, Types, ParserDateStatus
 from datetime import datetime, timedelta
 from eve_parser.include.parser import Parser
 
@@ -29,6 +29,8 @@ def liquidity_calc(region_id, type_id, month_ago, market_history):
     volume = 0
     day_range = timedelta(0)
     average_price_3_days = 0
+    parser_date_status = ParserDateStatus.objects.filter(name="Market history", region_id=region_id)
+    print(parser_date_status[0].parse_time.date())
     for market_history_day in market_history:
         days += 1
         volume += market_history_day.volume
