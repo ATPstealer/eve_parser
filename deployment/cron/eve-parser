@@ -16,12 +16,12 @@
 0 18 1-31/3 * * root cd /root/eve_parser && python3 manage.py runscript logistics_planning --script-args 10000054 "*" 1
 1 0 2-30/3 * * root cd /root/eve_parser && python3 manage.py runscript logistics_planning --script-args "*" 10000043 1
 0 6 2-30/3 * * root cd /root/eve_parser && python3 manage.py runscript logistics_planning --script-args 10000043 "*" 1
-0 12 2-30/2 * * root cd /root/eve_parser && python3 manage.py runscript logistics_planning --script-args "*" 10000032 1
-0 18 2-30/2 * * root cd /root/eve_parser && python3 manage.py runscript logistics_planning --script-args 10000032 "*" 1
-1 0 3-30/2 * * root cd /root/eve_parser && python3 manage.py runscript logistics_planning --script-args "*" 10000030 1
-0 6 3-30/2 * * root cd /root/eve_parser && python3 manage.py runscript logistics_planning --script-args 10000030 "*" 1
-0 12 3-30/2 * * root cd /root/eve_parser && python3 manage.py runscript logistics_planning --script-args "*" 10000042 1
-0 18 3-30/2 * * root cd /root/eve_parser && python3 manage.py runscript logistics_planning --script-args 10000042 "*" 1
+0 12 2-30/3 * * root cd /root/eve_parser && python3 manage.py runscript logistics_planning --script-args "*" 10000032 1
+0 18 2-30/3 * * root cd /root/eve_parser && python3 manage.py runscript logistics_planning --script-args 10000032 "*" 1
+1 0 3-30/3 * * root cd /root/eve_parser && python3 manage.py runscript logistics_planning --script-args "*" 10000030 1
+0 6 3-30/3 * * root cd /root/eve_parser && python3 manage.py runscript logistics_planning --script-args 10000030 "*" 1
+0 12 3-30/3 * * root cd /root/eve_parser && python3 manage.py runscript logistics_planning --script-args "*" 10000042 1
+0 18 3-30/3 * * root cd /root/eve_parser && python3 manage.py runscript logistics_planning --script-args 10000042 "*" 1
 
 # One time in month refresh types, top_types and regions
 0 0 1 * * root cd /root/eve_parser && python3 manage.py runscript parser_market_history --script-args 10000002 all
