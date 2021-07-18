@@ -30,7 +30,9 @@ def liquidity_calc(region_id, type_id, month_ago, market_history):
     day_range = timedelta(0)
     average_price_3_days = 0
     parser_date_status = ParserDateStatus.objects.filter(parser_name="Market history", region_id=region_id)
-    print(29 / float(parser_date_status[0].parse_time.date()-month_ago.date()))
+    day_range = parser_date_status[0].parse_time.date() - month_ago.date()
+    print(29 / day_range.days)
+    print(33 / day_range.days)
     for market_history_day in market_history:
         days += 1
         volume += market_history_day.volume
