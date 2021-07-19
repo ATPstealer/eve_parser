@@ -27,7 +27,6 @@ def liquidity_calc(region_id, type_id, month_ago, market_history):
     print(region_id, type_id)
     days = 0
     volume = 0
-    day_range = timedelta(0)
     average_price_3_days = 0
     parser_date_status = ParserDateStatus.objects.filter(parser_name="Market history", region_id=region_id)
     day_range = parser_date_status[0].parse_time.date() - month_ago.date()
