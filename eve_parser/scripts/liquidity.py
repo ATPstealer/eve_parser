@@ -13,7 +13,7 @@ def run(*args):
             region_array = [["10000002"]]
             types_array = Types.objects.values_list("type_id")
     for region in region_array:
-        parser_date_status = ParserDateStatus.objects.filter(parser_name="Market history", region_id=region_id)
+        parser_date_status = ParserDateStatus.objects.filter(parser_name="Market history", region_id=region[0])
         for item_type in types_array:
             month_ago = datetime.utcnow() - timedelta(days=30)
             market_history = MarketHistory.objects.filter(region_id=region[0], type_id=item_type[0],
