@@ -101,10 +101,16 @@ class Liquidity(models.Model):
 
 
 class LogisticsPlanning(models.Model):
-    type_id = models.IntegerField()
+    type_id = models.IntegerField(
+        db_index=True
+    )
     packaged_volume = models.FloatField()
-    region_id_from = models.IntegerField()
-    region_id_to = models.IntegerField()
+    region_id_from = models.IntegerField(
+        db_index=True
+    )
+    region_id_to = models.IntegerField(
+        db_index=True
+    )
     price_from = models.FloatField()
     price_to = models.FloatField()
     price_diff = models.FloatField()
@@ -118,10 +124,15 @@ class LogisticsPlanning(models.Model):
 
 class ParserDateStatus(models.Model):
     parser_name = models.CharField(
-        max_length=50
+        max_length=50,
+        db_index=True
     )
-    region_id = models.IntegerField()
-    region_id_log = models.IntegerField()
+    region_id = models.IntegerField(
+        db_index=True
+    )
+    region_id_log = models.IntegerField(
+        db_index=True
+    )
     parse_time = models.DateTimeField(
         auto_now=True
     )
