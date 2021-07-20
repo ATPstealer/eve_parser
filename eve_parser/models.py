@@ -93,8 +93,12 @@ class ParserStatus(models.Model):
 
 
 class Liquidity(models.Model):
-    region_id = models.IntegerField()
-    type_id = models.IntegerField()
+    region_id = models.IntegerField(
+        db_index=True
+    )
+    type_id = models.IntegerField(
+        db_index=True
+    )
     day_volume = models.FloatField()
     price = models.FloatField()
     day_turnover = models.FloatField()
