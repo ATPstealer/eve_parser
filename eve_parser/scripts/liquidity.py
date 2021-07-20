@@ -26,7 +26,7 @@ def run(*args):
 
 
 def liquidity_calc(region_id, type_id, day_range, market_history):
-    print(region_id, type_id)
+    # print(region_id, type_id)
     days = 0
     volume = 0
     average_price_3_days = 0
