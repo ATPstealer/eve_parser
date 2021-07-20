@@ -25,7 +25,6 @@ def calculate_logistics(region_from, region_to, day_turnover_threshold):
     if not check_need(region_from, region_to):
         return
     for item_type in TopTypes.objects.values_list("type_id"):
-        print(item_type[0])
         # get data from database
         item_describe = Types.objects.get(type_id=item_type[0])
         try:
