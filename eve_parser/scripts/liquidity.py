@@ -13,6 +13,7 @@ def run(*args):
             region_array = [["10000002"]]
             types_array = Types.objects.values_list("type_id")
     for region in region_array:
+        print(region[0])
         parser_date_status = ParserDateStatus.objects.filter(parser_name="Market history", region_id=region[0])
         month_ago = datetime.utcnow() - timedelta(days=30)
         day_range = parser_date_status[0].parse_time.date() - month_ago.date()
