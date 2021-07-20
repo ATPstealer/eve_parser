@@ -1,5 +1,6 @@
 [Unit]
 Description=django-app
+After=mysql.service network.target
 
 [Service]
 WorkingDirectory=/root/eve_parser/
