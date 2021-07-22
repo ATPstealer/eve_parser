@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'eve_parser',
-    'logistics'
+    'logistics',
     'neural_network',
 ]
 
