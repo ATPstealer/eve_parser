@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'eve_parser',
     'logistics'
+    'neural_network',
 ]
 
 MIDDLEWARE = [
