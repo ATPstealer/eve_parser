@@ -17,7 +17,8 @@ def build_model():
 
 (train_data, train_targets), (test_data, test_targets) = boston_housing.load_data()
 
-print(train_data)
+print(train_data[0])
+print(train_targets)
 
 mean = train_data.mean(axis=0)
 train_data -= mean
