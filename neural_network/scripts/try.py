@@ -6,7 +6,7 @@ import operator
 
 
 def run():
-    type_ids = [34, 1230, 17471, 17470, 28430, 28432, 28431
+    type_ids = [34, 1230, 17471, 17470, 28430, 28432, 28431]
     count_depth = 15
     count_history = 180
     shift_days = 5
