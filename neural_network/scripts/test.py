@@ -8,6 +8,11 @@ print(train_data.shape)
 print(test_data.shape)
 print(test_data)
 
+print()
+print()
+print()
+print()
+
 mean = train_data.mean(axis=0)
 train_data -= mean
 std = train_data.std(axis=0)
