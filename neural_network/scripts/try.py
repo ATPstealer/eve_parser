@@ -18,10 +18,10 @@ def run():
     market_predict_data, blank = build_data(market_history, type_ids, count_depth, count_depth, 0)
 
     model = build_model(market_data)
-    model.fit(market_data, market_target, epochs=num_epochs, batch_size=512, verbose=0,
+    model.fit(market_data, market_target, epochs=num_epochs, batch_size=5,
                         validation_data=(market_check_data, market_check_target))
 
-    # val_mse, val_mae = model.evaluate(market_check_data, market_check_target, verbose=0)
+    # val_mse, val_mae = model.evaluate(market_check_data, market_check_target)
 
     predict = model.predict(market_predict_data, verbose=0)
 
