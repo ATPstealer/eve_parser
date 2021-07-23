@@ -14,7 +14,7 @@ std = train_data.std(axis=0)
 train_data /= std
 test_data -= mean
 test_data /= std
-
+print(test_data)
 
 def build_model():
     model = models.Sequential()
