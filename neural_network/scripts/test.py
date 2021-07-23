@@ -8,8 +8,8 @@ os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
 def build_model():
     model = models.Sequential()
-    model.add(layers.Dense(64, activation='relu',input_shape=(train_data.shape[1],)))
-    model.add(layers.Dense(64, activation='relu'))
+    model.add(layers.Dense(32, activation='relu',input_shape=(train_data.shape[1],)))
+    model.add(layers.Dense(32, activation='relu'))
     model.add(layers.Dense(1))
     model.compile(optimizer='rmsprop', loss='mse', metrics=['mae'])
     return model
