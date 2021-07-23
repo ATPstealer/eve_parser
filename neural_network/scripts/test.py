@@ -2,6 +2,8 @@ from keras.datasets import boston_housing
 from keras import models
 from keras import layers
 import numpy as np
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 
 def build_model():
