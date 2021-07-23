@@ -16,7 +16,10 @@ def run():
     market_data, market_target = build_data(market_history, type_ids, count_depth, count_history, shift_days)
     market_check_data, market_check_target = build_data(market_history, type_ids, count_depth, shift_days, 0)
     market_predict_data, blank = build_data(market_history, type_ids, count_depth, count_depth, 0)
+
     mean = market_data.mean(axis=2)
+    print(mean)
+
     market_data -= mean
     std = market_data.std(axis=2)
     market_data /= std

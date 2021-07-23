@@ -20,9 +20,9 @@ print(train_targets)
 
 print(train_data.shape, train_targets.shape)
 
-mean = train_data.mean(axis=0)
+mean = train_data.mean(axis=2)
 train_data -= mean
-std = train_data.std(axis=0)
+std = train_data.std(axis=2)
 print(std, mean)
 train_data /= std
 test_data -= mean
