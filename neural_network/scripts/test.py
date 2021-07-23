@@ -6,7 +6,7 @@ import numpy as np
 
 def build_model():
     model = models.Sequential()
-    model.add(layers.Dense(32, activation='relu',input_shape=(train_data.shape[1],)))
+    model.add(layers.Dense(32, activation='relu', input_shape=(train_data.shape[1],)))
     model.add(layers.Dense(32, activation='relu'))
     model.add(layers.Dense(1))
     model.compile(optimizer='rmsprop', loss='mse', metrics=['mae'])
@@ -17,6 +17,8 @@ def build_model():
 
 print(train_data[0])
 print(train_targets)
+
+print(train_data.shape, train_targets.shape)
 
 mean = train_data.mean(axis=0)
 train_data -= mean
