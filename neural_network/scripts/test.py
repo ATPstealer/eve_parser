@@ -3,7 +3,7 @@ from keras import models
 from keras import layers
 import numpy as np
 import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
 
 def build_model():
