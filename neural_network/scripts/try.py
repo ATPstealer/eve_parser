@@ -8,7 +8,7 @@ import operator
 def run():
     type_ids = [34, 1230, 17471, 17470, 28430, 28432, 28431]
     count_depth = 15
-    count_history = 180
+    count_history = 250
     shift_days = 5
     num_epochs = 80
 
@@ -16,6 +16,12 @@ def run():
     market_data, market_target = build_data(market_history, type_ids, count_depth, count_history, shift_days)
     market_check_data, market_check_target = build_data(market_history, type_ids, count_depth, shift_days, 0)
     market_predict_data, blank = build_data(market_history, type_ids, count_depth, count_depth, 0)
+    mean = market_data.mean(axis=0)
+    market_data -= mean
+    std = market_data.std(axis=0)
+    market_data /= std
+    market_check_data -= mean
+    market_check_data /= std
 
     model = build_model(market_data)
     model.fit(market_data, market_target, epochs=num_epochs, batch_size=5,
