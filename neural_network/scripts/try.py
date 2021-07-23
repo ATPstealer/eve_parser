@@ -9,8 +9,8 @@ def run():
     type_ids = [2436, 34, 35]
     count_depth = 15
     count_history = 180
-    shift_days = 30
-    num_epochs = 100
+    shift_days = 0
+    num_epochs = 80
 
     market_history = receive_history(type_ids)
     market_data, market_target = build_data(market_history, type_ids, count_depth, count_history, shift_days)
@@ -18,24 +18,21 @@ def run():
     market_predict_data, blank = build_data(market_history, type_ids, count_depth, count_depth, 0)
 
     model = build_model(market_data)
-    history = model.fit(market_data, market_target, epochs=num_epochs, batch_size=512, verbose=0,
+    model.fit(market_data, market_target, epochs=num_epochs, batch_size=512, verbose=0,
                         validation_data=(market_check_data, market_check_target))
-    print(history.history)
 
-    val_mse, val_mae = model.evaluate(market_check_data, market_check_target, verbose=0)
-    print(val_mse)
-    all_scores = [val_mae]
-    print(all_scores)
-    print(np.mean(all_scores))
+    # val_mse, val_mae = model.evaluate(market_check_data, market_check_target, verbose=0)
 
     predict = model.predict(market_predict_data, verbose=0)
 
-    print(predict[1])
+    for pre in predict:
+        print(pre[0])
 
 
 def build_model(market_data):
     model = models.Sequential()
     model.add(layers.Dense(64, activation='relu', input_shape=(market_data.shape[1], market_data.shape[2],)))
+    model.add(layers.Dense(64, activation='relu'))
     model.add(layers.Dense(64, activation='relu'))
     model.add(layers.Dense(1))
     model.compile(optimizer='rmsprop', loss='mse', metrics=['mae'])
