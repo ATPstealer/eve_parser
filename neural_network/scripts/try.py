@@ -33,10 +33,10 @@ def run():
     print(val_mse)
     print(val_mae)
 
-    predict = model.predict(market_predict_data, verbose=0)
+    predict = model.predict(market_predict_data)
 
     for pre in predict:
-        print(pre[0])
+        print(pre)
 
 
 def build_model(market_data):
