@@ -6,10 +6,10 @@ import operator
 
 
 def run():
-    type_ids = [2436, 34, 35]
+    type_ids = [34, 1230, 17471, 17470, 28430, 28432, 28431
     count_depth = 15
     count_history = 180
-    shift_days = 0
+    shift_days = 5
     num_epochs = 80
 
     market_history = receive_history(type_ids)
@@ -21,7 +21,9 @@ def run():
     model.fit(market_data, market_target, epochs=num_epochs, batch_size=5,
                         validation_data=(market_check_data, market_check_target))
 
-    # val_mse, val_mae = model.evaluate(market_check_data, market_check_target)
+    val_mse, val_mae = model.evaluate(market_check_data, market_check_target)
+    print(val_mse)
+    print(val_mae)
 
     predict = model.predict(market_predict_data, verbose=0)
 
