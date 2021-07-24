@@ -3,6 +3,7 @@ from keras import layers
 import numpy as np
 from eve_parser.models import MarketHistory
 import operator
+from tensorflow import keras
 
 
 def run():
@@ -19,7 +20,7 @@ def run():
 
     model = build_model(market_data)
     model.fit(market_data, market_target, epochs=num_epochs, batch_size=5,
-                        validation_data=(market_check_data, market_check_target))
+              validation_data=(market_check_data, market_check_target))
 
     val_mse, val_mae = model.evaluate(market_check_data, market_check_target)
     print(val_mse)
@@ -32,12 +33,13 @@ def run():
 
 
 def build_model(market_data):
-    model = models.Sequential()
-    model.add(layers.Dense(64, activation='relu', input_shape=(market_data.shape[1], market_data.shape[2],)))
-    model.add(layers.Dense(64, activation='relu'))
-    model.add(layers.Dense(64, activation='relu'))
+    model = keras.Sequential()
+    model.add(keras.Input(shape=(market_data.shape[1], market_data.shape[2])))
+    model.add(layers.Dense(128, activation='relu'))
     model.add(layers.Dense(1))
     model.compile(optimizer='rmsprop', loss='mse', metrics=['mae'])
+    model.summary()
+    print(model.input_shape)
     return model
 
 
