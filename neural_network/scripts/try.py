@@ -11,7 +11,7 @@ def run():
     count_depth = 15
     count_history = 250
     shift_days = 5
-    num_epochs = 80
+    num_epochs = 200
 
     market_history = receive_history(type_ids)
     market_data, market_target = build_data(market_history, type_ids, count_depth, count_history, shift_days)
