@@ -6,9 +6,10 @@ import operator
 
 
 def run():
-    type_ids = [34, 28430, 1230, 17471, 17470, 28432, 28431]
-    count_depth = 3
-    count_history = 10
+    #type_ids = [34, 1230, 17471, 17470, 28430, 28432, 28431]
+    type_ids = [28846, 28848, 28844, 28850]
+    count_depth = 15
+    count_history = 250
     shift_days = 5
     num_epochs = 80
 
@@ -33,8 +34,9 @@ def run():
 
 def build_model(market_data):
     model = models.Sequential()
-    model.add(layers.Dense(128, activation='relu', input_shape=(market_data.shape[1], market_data.shape[2])))
-    model.add(layers.Dense(128, activation='relu'))
+    model.add(layers.Dense(256, activation='relu', input_shape=(market_data.shape[1], )))
+    model.add(layers.Dense(256, activation='relu'))
+    model.add(layers.Dense(32, activation='relu'))
     model.add(layers.Dense(1))
     model.compile(optimizer='rmsprop', loss='mse', metrics=['mae'])
     model.summary()
@@ -71,8 +73,6 @@ def build_data(market_history, type_ids, count_depth, count_history, shift_days)
             iteration_type += 1
         start_day -= 1
         end_day -= 1
-
-    print(market_data)
 
     start_day = count_history + shift_days
     end_day = shift_days
