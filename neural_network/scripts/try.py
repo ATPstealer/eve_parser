@@ -6,9 +6,9 @@ import operator
 
 
 def run():
-    type_ids = [34, 1230, 17471, 17470, 28430, 28432, 28431]
-    count_depth = 15
-    count_history = 250
+    type_ids = [34, 28430, 1230, 17471, 17470, 28432, 28431]
+    count_depth = 3
+    count_history = 10
     shift_days = 5
     num_epochs = 80
 
@@ -33,8 +33,8 @@ def run():
 
 def build_model(market_data):
     model = models.Sequential()
-    model.add(layers.Conv2D(128, 7, activation='relu', input_shape=(market_data.shape[1], market_data.shape[2])))
-    model.add(layers.Conv2D(128, 7, activation='relu'))
+    model.add(layers.Dense(128, activation='relu', input_shape=(market_data.shape[1], market_data.shape[2])))
+    model.add(layers.Dense(128, activation='relu'))
     model.add(layers.Dense(1))
     model.compile(optimizer='rmsprop', loss='mse', metrics=['mae'])
     model.summary()
@@ -52,8 +52,7 @@ def receive_history(type_ids):
 
 def build_data(market_history, type_ids, count_depth, count_history, shift_days):
     count_types = len(type_ids)
-    market_data = np.arange(count_types * count_history * count_depth, dtype='f').reshape(count_history, count_types,
-                                                                                          count_depth)
+    market_data = np.arange(count_types * count_history * count_depth, dtype='f').reshape(count_history, count_types * count_depth)
     market_history = receive_history(type_ids)
     start_day = count_depth + count_depth + count_history + shift_days - 1
     end_day = count_depth + count_history + shift_days - 1
@@ -63,15 +62,17 @@ def build_data(market_history, type_ids, count_depth, count_history, shift_days)
             iteration_date = 0
             if end_day != 0:
                 for one_day in market_history[item_type][-start_day:-end_day]:
-                    market_data[iteration, iteration_type, iteration_date] = one_day.average
+                    market_data[iteration, iteration_type * count_depth + iteration_date] = one_day.average
                     iteration_date += 1
             else:
                 for one_day in market_history[item_type][-start_day:]:
-                    market_data[iteration, iteration_type, iteration_date] = one_day.average
+                    market_data[iteration, iteration_type * count_depth + iteration_date] = one_day.average
                     iteration_date += 1
             iteration_type += 1
         start_day -= 1
         end_day -= 1
+
+    print(market_data)
 
     start_day = count_history + shift_days
     end_day = shift_days
