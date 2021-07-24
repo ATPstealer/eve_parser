@@ -34,8 +34,9 @@ def run():
 
 def build_model(market_data):
     model = models.Sequential()
-    model.add(layers.Dense(128, activation='relu', input_shape=(market_data.shape[1], market_data.shape[2])))
-    model.add(layers.Dense(128, activation='relu'))
+    model.add(layers.Dense(256, activation='relu', input_shape=(market_data.shape[1], )))
+    model.add(layers.Dense(256, activation='relu'))
+    model.add(layers.Dense(32, activation='relu'))
     model.add(layers.Dense(1))
     model.compile(optimizer='rmsprop', loss='mse', metrics=['mae'])
     model.summary()
