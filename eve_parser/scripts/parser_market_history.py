@@ -15,6 +15,7 @@ def run(*args):
     print("start at: %s\n end at: %s" % (start, datetime.now()))
     Parser.parser_date_status("END Market history", 0, 0)
 
+
 def parse_region_history(args):
     parser = Parser()
     region = args[0]

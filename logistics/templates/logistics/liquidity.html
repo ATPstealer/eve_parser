@@ -12,7 +12,11 @@
 <form method="get" action="/logistics/liquidity/" id="region_form">
   <select class="form-select" name="region" style="width: 200px;" id="region" onchange="javascript:this.form.submit()">
   {% for reg in regions %}
-    <option {% if region_selected == reg.0 %}selected{% endif %}>{{ reg.0 }}</option>
+    <option {% if region_selected == reg.0 %}selected{% endif %}>
+        {%if reg.0 == "The Forge" %}<b>{% endif %}
+        {{ reg.0 }}
+        {%if reg.0 == "The Forge" %}</b>{% endif %}
+    </option>
   {% endfor %}
   </select>
 </form> </h2>
