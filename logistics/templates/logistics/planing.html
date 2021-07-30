@@ -20,7 +20,7 @@
   </select>
   <select class="form-select" name="region_to" style="width: 200px; float: left" id="region_to" onchange="javascript:this.form.submit()">
   {% for reg in regions %}
-    <option {% if region_from_selected == reg.0 %}selected{% endif %}
+    <option {% if region_to_selected == reg.0 %}selected{% endif %}
      {% if reg.0 == "The Forge" or reg.0 == "Karan" or reg.0 == "Domain" or reg.0 == "Sinq Laison" or reg.0 == "Heimatar" or reg.0 == "Metropolis" %}
        style="font-weight: bold;"{% endif %}>
      {{ reg.0 }}</option>
