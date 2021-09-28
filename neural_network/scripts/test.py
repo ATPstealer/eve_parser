@@ -1,30 +1,60 @@
-from keras.models import Sequential
-from keras.layers import Dense
+from keras.datasets import boston_housing
+from keras import models
+from keras import layers
 import numpy as np
 
-# загружаем данные с фичами
-dataset = np.loadtxt("data.txt", delimiter=",")
-# Первые 8 столбцов в примере отвечают за фичи, последний же за класс, разбиваем
-X = dataset[:, 0:8]
-Y = dataset[:, 8]
 
-# Создаём модель!
-model = Sequential()
-# Добавляем первый слой Dense, первое число 12 - это количество нейронов,
-# input_dim - количество фич на вход
-# activation -  функция активации, полулинейная функция max(x, 0)
-# именно полулинейные функции позволяют получать нелинейные результаты с минимальными затратами
-model.add(Dense(12, input_dim=8, activation='relu'))
-# добавляем второй слой с 8ю нейронами
-model.add(Dense(8, activation='relu'))
-# на выходе при бинарной классификации, функцию активации чаще всего используют sigmoid , реже softmax
-# Компилирование модели. binary_crossentropy - опять же не случайно, а т.к. у нас два класса.
-# Метрика accuracy используется практически для всех задач классификации
-model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+def build_model():
+    model = models.Sequential()
+    model.add(layers.Dense(32, activation='relu', input_shape=(train_data.shape[1],)))
+    model.add(layers.Dense(32, activation='relu'))
+    model.add(layers.Dense(1))
+    model.compile(optimizer='rmsprop', loss='mse', metrics=['mae'])
+    return model
 
-# Наконец дошли до обучения модели, X и Y - понятно,
-# epoch - максимальное количество эпох до остановки
-# batch_size - сколько объектов будет загружаться за итерацию
-model.fit(X, Y, epochs=15, batch_size=10, verbose=2)
-# Предсказание
-predictions = model.predict(X)
+
+
+(train_data, train_targets), (test_data, test_targets) = boston_housing.load_data()
+
+print(train_data[0])
+print(train_targets)
+
+print(train_data.shape, train_targets.shape)
+
+mean = train_data.mean(axis=0)
+train_data -= mean
+std = train_data.std(axis=0)
+print(std, mean)
+train_data /= std
+test_data -= mean
+test_data /= std
+
+k = 4
+num_val_samples = len(train_data) // k
+num_epochs = 100
+all_scores = []
+for i in range(k):
+    print('processing fold #', i)
+    val_data = train_data[i * num_val_samples: (i + 1) * num_val_samples]
+    val_targets = train_targets[i * num_val_samples: (i + 1) * num_val_samples]
+    partial_train_data = np.concatenate( [train_data[:i * num_val_samples], train_data[(i + 1) * num_val_samples:]], axis=0)
+    partial_train_targets = np.concatenate( [train_targets[:i * num_val_samples], train_targets[(i + 1) * num_val_samples:]], axis=0)
+    model = build_model()
+
+model.summary()
+
+model.fit(partial_train_data, partial_train_targets, epochs=num_epochs, batch_size=1)
+val_mse, val_mae = model.evaluate(val_data, val_targets, verbose=0)
+all_scores.append(val_mae)
+
+print(all_scores)
+print(np.mean(all_scores))
+
+num_epochs = 500
+
+model.fit(partial_train_data, partial_train_targets, epochs=num_epochs, batch_size=1)
+val_mse, val_mae = model.evaluate(val_data, val_targets, verbose=0)
+all_scores.append(val_mae)
+
+print(all_scores)
+print(np.mean(all_scores))
