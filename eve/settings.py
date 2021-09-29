@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = eve.settings_secrets.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = eve.settings_secrets.DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = eve.settings_secrets.ALLOWED_HOSTS
 
 
 # Application definition
