@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    background: #555555;
+}
+
+.header a {
+    color: white;
+    text-decoration: none;
+    font-size: 35px;
+    display: block;
+}
+
+.header span {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    padding-bottom: 6px;
+}
+
+.header span:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    border-bottom: 3px solid white;
+    bottom: 0;
+    left: -100%;
+    transition: all ease-in-out 500ms;
+}
+
+.header span:hover:before {
+    left: 0;
+    transition: all ease-in-out 500ms;
+}
+
+.header a + a {
+    border-left: 1px solid white;
+    padding-left: 30px;
+}
+
+form{
+    margin: 50px 0;
+}
+
+.form-select {
+    font-family: 'Orbitron', sans-serif;
+}
+
+.selects {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.form-item {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-item span {
+    font-size: 30px;
+}
+
+.form-item p {
+    font-size: 25px;
+    padding: 0;
+    margin: auto 0 0;
+}
+
+.tooltip {
+    position: relative;
+    cursor: pointer;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    border-radius: 6px;
+    bottom: 100%;
+    left: 0;
+    position: absolute;
+    z-index: 1;
+    transform: translateX(15px);
+    width: 200px; /*Если текст ОЧЕНЬ большой, этот параметр можно увеличить
+     если же все тултипы маленькие, то можно уменьшить*/
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.tooltip .tooltiptext:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 20px;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.tooltip .tooltip-left{
+    transform: translateX(-115px);
+}
+
+.tooltip .tooltip-left:after{
+    right: 40px;
+    left: unset;
+}
+
+tr:nth-child(odd){
+    background-color: #c8c8c8;
+}
+
+.tr-header{
+    background-color: white!important;
+}
+
+.table{
+    font-size: 18px;
+}

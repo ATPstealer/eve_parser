@@ -1,85 +1,89 @@
-<html>
-<head>
-
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" >
-        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-        ym(85542022, "init", {
-            clickmap:true,
-            trackLinks:true,
-            accurateTrackBounce:true
-        });
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/85542022" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DDEJJBWVQB"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-DDEJJBWVQB');
-    </script>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+{% include "eve/header.html" %}
     <title>Logistics planing</title>
 </head>
 
 <body>
-<h2> From, To </h2>
-<form method="get" action="/logistics/planing/" id="region_form" style="display:inline-block; position: relative;">
-  <select class="form-select" name="region_from" style="width: 200px;" id="region_from" onchange="javascript:this.form.submit()">
-  {% for reg in regions %}
-    <option {% if region_from_selected == reg.0 %}selected{% endif %}
-     {% if reg.0 == "The Forge" or reg.0 == "Karan" or reg.0 == "Domain" or reg.0 == "Sinq Laison" or reg.0 == "Heimatar" or reg.0 == "Metropolis" %}
-       style="font-weight: bold;"{% endif %}>
-     {{ reg.0 }}</option>
-  {% endfor %}
-  </select>
-  <select class="form-select" name="region_to" style="width: 200px; float: left" id="region_to" onchange="javascript:this.form.submit()">
-  {% for reg in regions %}
-    <option {% if region_to_selected == reg.0 %}selected{% endif %}
-     {% if reg.0 == "The Forge" or reg.0 == "Karan" or reg.0 == "Domain" or reg.0 == "Sinq Laison" or reg.0 == "Heimatar" or reg.0 == "Metropolis" %}
-       style="font-weight: bold;"{% endif %}>
-     {{ reg.0 }}</option>
-  {% endfor %}
-  </select>
+
+{% include "eve/menu.html" %}
+
+<form class="selects" method="get" action="/logistics/planing/" id="region_form">
+  <div class="form-item">
+    <span>From</span>
+    <select class="form-select" name="region_from" id="region_from" onchange="javascript:this.form.submit()">
+      {% for reg in regions %}
+      <option {% if region_from_selected == reg.0 %}selected{% endif %}
+              {% if reg.0 == "The Forge" or reg.0 == "Karan" or reg.0 == "Domain" or reg.0 == "Sinq Laison" or reg.0 == "Heimatar" or reg.0 == "Metropolis" %}
+      style="font-weight: bold;"{% endif %}>
+      {{ reg.0 }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="form-item">
+    <span>To</span>
+    <select class="form-select" name="region_from" id="region_to" onchange="javascript:this.form.submit()">
+      {% for reg in regions %}
+      <option {% if region_to_selected == reg.0 %}selected{% endif %}
+              {% if reg.0 == "The Forge" or reg.0 == "Karan" or reg.0 == "Domain" or reg.0 == "Sinq Laison" or reg.0 == "Heimatar" or reg.0 == "Metropolis" %}
+      style="font-weight: bold;"{% endif %}>
+      {{ reg.0 }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="form-item">
+    <span>Last parse time</span>
+    <p>{{ parse_time }}</p>
+  </div>
 </form>
-<h7>Last parse time: {{ parse_time }}</h7>
+
+
+
 <table class="table">
   <thead>
-    <tr>
-      <th scope="col">Type_id</th>
-      <th scope="col">Pac Volume</th>
-      <th scope="col">Name</th>
-      <th scope="col">Profit</th>
-      <th scope="col">Price From</th>
-      <th scope="col">Price To</th>
-      <th scope="col">Diff</th>
-      <th scope="col">Day Vol To</th>
-      <th scope="col">Liq To</th>
-    </tr>
+  <tr class="tr-header">
+    <th scope="col" class="tooltip">Type_id
+      <span class="tooltiptext">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dolore harum minus molestias nesciunt odio perferendis quidem repellendus sapiente temporibus?</span>
+    </th>
+    <th scope="col" class="tooltip">Pac Volume
+      <span class="tooltiptext">Tooltip text Pac Volume</span>
+    </th>
+    <th scope="col" class="tooltip">Name
+      <span class="tooltiptext">Tooltip text 3</span>
+    </th>
+    <th scope="col" class="tooltip">Profit
+      <span class="tooltiptext">Tooltip text 4</span>
+    </th>
+    <th scope="col" class="tooltip">Price From
+      <span class="tooltiptext">Tooltip text 5</span>
+    </th>
+    <th scope="col" class="tooltip">Price To
+      <span class="tooltiptext">Tooltip text 6</span>
+    </th>
+    <th scope="col" class="tooltip">Diff
+      <span class="tooltiptext tooltip-left">Tooltip text 7</span>
+    </th>
+    <th scope="col" class="tooltip">Day Vol To
+      <span class="tooltiptext tooltip-left">Tooltip text 8</span>
+    </th>
+    <th scope="col" class="tooltip">Liq To
+      <span class="tooltiptext tooltip-left">Tooltip text 9</span>
+    </th>
+  </tr>
   </thead>
   <tbody>
-{% for log in logistics %}
-    <tr>
-      <td>{{ log.type_id }}</td>
-      <td>{{ log.packaged_volume }}</td>
-      <th scope="row">{{ log.name }}</th>
-      <td>{{ log.profit_from }}</td>
-      <td>{{ log.price_from }}</td>
-      <td>{{ log.price_to }}</td>
-      <td>{{ log.price_diff }}</td>
-      <td>{{ log.day_volume_to }}</td>
-      <td>{{ log.liquidity_to }}</td>
-    </tr>
-{% endfor %}
+  {% for log in logistics %}
+  <tr>
+    <td>{{ log.type_id }}</td>
+    <td>{{ log.packaged_volume }}</td>
+    <th scope="row">{{ log.name }}</th>
+    <td>{{ log.profit_from }}</td>
+    <td><script>document.write(({{ log.price_from }}).toLocaleString())</script></td>
+    <td><script>document.write(({{ log.price_to }}).toLocaleString())</script></td>
+    <td><script>document.write(({{ log.price_diff }}).toLocaleString())</script></td>
+    <td>{{ log.day_volume_to }}</td>
+    <td>{{ log.liquidity_to }}</td>
+  </tr>
+  {% endfor %}
   </tbody>
 </table>
 
