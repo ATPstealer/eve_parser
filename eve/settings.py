@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import eve.settings_secrets
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-n^h8*q=&%!$b14=woc*$lf=oc5c7h@(@!!@qjyjqkw!ozc7ma9'
+SECRET_KEY = eve.settings_secrets.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -81,9 +82,9 @@ WSGI_APPLICATION = 'eve.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'eve',
-        'USER': 'root',
-        'PASSWORD': 'huf000',
+        'NAME': eve.settings_secrets.DATABASES['default']['NAME'],
+        'USER': eve.settings_secrets.DATABASES['default']['USER'],
+        'PASSWORD': eve.settings_secrets.DATABASES['default']['PASSWORD'],
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }

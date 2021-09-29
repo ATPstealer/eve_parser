@@ -10,3 +10,4 @@ eve_parser/migrations
 logistics/migrations
 neural_network/migrations
 .git
+eve/settings_secrets.py
