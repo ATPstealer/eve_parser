@@ -21,7 +21,7 @@
 
     <div class="form-item">
         <span>To</span>
-        <select class="form-select" name="region_from" id="region_to" onchange="javascript:this.form.submit()">
+        <select class="form-select" name="region_to" id="region_to" onchange="javascript:this.form.submit()">
             {% for reg in regions %}
                 <option {% if region_to_selected == reg.0 %}selected{% endif %}
                         {% if reg.0 == "The Forge" or reg.0 == "Karan" or reg.0 == "Domain" or reg.0 == "Sinq Laison" or reg.0 == "Heimatar" or reg.0 == "Metropolis" %}
