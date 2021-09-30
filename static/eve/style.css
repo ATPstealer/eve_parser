@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre&display=swap');
 
 body {
-    font-family: 'Orbitron', sans-serif!important;
+    font-family: 'Gemunu Libre', sans-serif!important;
     margin: 0;
     padding: 0;
 }
@@ -54,7 +54,7 @@ form{
 }
 
 .form-select {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Gemunu Libre', sans-serif;
 }
 
 .selects {
