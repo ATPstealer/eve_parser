@@ -6,24 +6,24 @@
 
 {% include "eve/menu.html" %}
 
-    <form class="selects" method="get" action="/logistics/liquidity/" id="region_form">
-        <div class="form-item">
-            <span>Liquidity on</span>
+<form class="selects" method="get" action="/logistics/liquidity/" id="region_form">
+    <div class="form-item">
+        <span>Liquidity on</span>
         <select class="form-select" name="region" id="region" onchange="javascript:this.form.submit()">
             {% for reg in regions %}
-            <option {% if region_selected == reg.0 %}selected{% endif %}
-                    {% if reg.0 == "The Forge" or reg.0 == "Karan" or reg.0 == "Domain" or reg.0 == "Sinq Laison" or reg.0 == "Heimatar" or reg.0 == "Metropolis" %}
-            style="font-weight: bold;"{% endif %}>
-            {{ reg.0 }}
-            </option>
+                <option {% if region_selected == reg.0 %}selected{% endif %}
+                        {% if reg.0 == "The Forge" or reg.0 == "Karan" or reg.0 == "Domain" or reg.0 == "Sinq Laison" or reg.0 == "Heimatar" or reg.0 == "Metropolis" %}
+                        style="font-weight: bold;"{% endif %}>
+                    {{ reg.0 }}
+                </option>
             {% endfor %}
         </select>
-        <div/>
-        <div class="form-item">
-            <span>Last parse time</span>
-            <p>{{ parse_time }}</p>
-        </div>
-    </form>
+    </div>
+    <div class="form-item">
+        <span>Last parse time</span>
+        <p>{{ parse_time }}</p>
+    </div>
+</form>
 
 
 <table class="table">
@@ -48,13 +48,19 @@
     </thead>
     <tbody>
     {% for liq in liquidity %}
-    <tr>
-        <td>{{ liq.type_id }}</td>
-        <th scope="row">{{ liq.name }}</th>
-        <td><script>document.write(({{ liq.day_turnover }}).toLocaleString())</script></td>
-        <td><script>document.write(({{ liq.day_volume }}).toLocaleString())</script></td>
-        <td><script>document.write(({{ liq.price }}).toLocaleString())</script></td>
-    </tr>
+        <tr>
+            <td>{{ liq.type_id }}</td>
+            <th scope="row">{{ liq.name }}</th>
+            <td>
+                <script>document.write(({{ liq.day_turnover }}).toLocaleString())</script>
+            </td>
+            <td>
+                <script>document.write(({{ liq.day_volume }}).toLocaleString())</script>
+            </td>
+            <td>
+                <script>document.write(({{ liq.price }}).toLocaleString())</script>
+            </td>
+        </tr>
     {% endfor %}
     </tbody>
 </table>

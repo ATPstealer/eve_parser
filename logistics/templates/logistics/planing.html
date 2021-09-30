@@ -1,5 +1,5 @@
 {% include "eve/header.html" %}
-    <title>Logistics planing</title>
+<title>Logistics planing</title>
 </head>
 
 <body>
@@ -7,84 +7,89 @@
 {% include "eve/menu.html" %}
 
 <form class="selects" method="get" action="/logistics/planing/" id="region_form">
-  <div class="form-item">
-    <span>From</span>
-    <select class="form-select" name="region_from" id="region_from" onchange="javascript:this.form.submit()">
-      {% for reg in regions %}
-      <option {% if region_from_selected == reg.0 %}selected{% endif %}
-              {% if reg.0 == "The Forge" or reg.0 == "Karan" or reg.0 == "Domain" or reg.0 == "Sinq Laison" or reg.0 == "Heimatar" or reg.0 == "Metropolis" %}
-      style="font-weight: bold;"{% endif %}>
-      {{ reg.0 }}</option>
-      {% endfor %}
-    </select>
-  </div>
+    <div class="form-item">
+        <span>From</span>
+        <select class="form-select" name="region_from" id="region_from" onchange="javascript:this.form.submit()">
+            {% for reg in regions %}
+                <option {% if region_from_selected == reg.0 %}selected{% endif %}
+                        {% if reg.0 == "The Forge" or reg.0 == "Karan" or reg.0 == "Domain" or reg.0 == "Sinq Laison" or reg.0 == "Heimatar" or reg.0 == "Metropolis" %}
+                        style="font-weight: bold;"{% endif %}>
+                    {{ reg.0 }}</option>
+            {% endfor %}
+        </select>
+    </div>
 
-  <div class="form-item">
-    <span>To</span>
-    <select class="form-select" name="region_from" id="region_to" onchange="javascript:this.form.submit()">
-      {% for reg in regions %}
-      <option {% if region_to_selected == reg.0 %}selected{% endif %}
-              {% if reg.0 == "The Forge" or reg.0 == "Karan" or reg.0 == "Domain" or reg.0 == "Sinq Laison" or reg.0 == "Heimatar" or reg.0 == "Metropolis" %}
-      style="font-weight: bold;"{% endif %}>
-      {{ reg.0 }}</option>
-      {% endfor %}
-    </select>
-  </div>
-  <div class="form-item">
-    <span>Last parse time</span>
-    <p>{{ parse_time }}</p>
-  </div>
+    <div class="form-item">
+        <span>To</span>
+        <select class="form-select" name="region_from" id="region_to" onchange="javascript:this.form.submit()">
+            {% for reg in regions %}
+                <option {% if region_to_selected == reg.0 %}selected{% endif %}
+                        {% if reg.0 == "The Forge" or reg.0 == "Karan" or reg.0 == "Domain" or reg.0 == "Sinq Laison" or reg.0 == "Heimatar" or reg.0 == "Metropolis" %}
+                        style="font-weight: bold;"{% endif %}>
+                    {{ reg.0 }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-item">
+        <span>Last parse time</span>
+        <p>{{ parse_time }}</p>
+    </div>
 </form>
 
 
-
 <table class="table">
-  <thead>
-  <tr class="tr-header">
-    <th scope="col" class="hovertips">Type_id
-      <span class="hovertipstext">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dolore harum minus molestias nesciunt odio perferendis quidem repellendus sapiente temporibus?</span>
-    </th>
-    <th scope="col" class="hovertips">Pac Volume
-      <span class="hovertipstext">hovertips text Pac Volume</span>
-    </th>
-    <th scope="col" class="hovertips">Name
-      <span class="hovertipstext">hovertips text 3</span>
-    </th>
-    <th scope="col" class="hovertips">Profit
-      <span class="hovertipstext">hovertips text 4</span>
-    </th>
-    <th scope="col" class="hovertips">Price From
-      <span class="hovertipstext">hovertips text 5</span>
-    </th>
-    <th scope="col" class="hovertips">Price To
-      <span class="hovertipstext">hovertips text 6</span>
-    </th>
-    <th scope="col" class="hovertips">Diff
-      <span class="hovertipstext hovertips-left">hovertips text 7</span>
-    </th>
-    <th scope="col" class="hovertips">Day Vol To
-      <span class="hovertipstext hovertips-left">hovertips text 8</span>
-    </th>
-    <th scope="col" class="hovertips">Liq To
-      <span class="hovertipstext hovertips-left">hovertips text 9</span>
-    </th>
-  </tr>
-  </thead>
-  <tbody>
-  {% for log in logistics %}
-  <tr>
-    <td>{{ log.type_id }}</td>
-    <td>{{ log.packaged_volume }}</td>
-    <th scope="row">{{ log.name }}</th>
-    <td>{{ log.profit_from }}</td>
-    <td><script>document.write(({{ log.price_from }}).toLocaleString())</script></td>
-    <td><script>document.write(({{ log.price_to }}).toLocaleString())</script></td>
-    <td><script>document.write(({{ log.price_diff }}).toLocaleString())</script></td>
-    <td>{{ log.day_volume_to }}</td>
-    <td>{{ log.liquidity_to }}</td>
-  </tr>
-  {% endfor %}
-  </tbody>
+    <thead>
+    <tr class="tr-header">
+        <th scope="col" class="hovertips">Type_id
+            <span class="hovertipstext">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dolore harum minus molestias nesciunt odio perferendis quidem repellendus sapiente temporibus?</span>
+        </th>
+        <th scope="col" class="hovertips">Pac Volume
+            <span class="hovertipstext">hovertips text Pac Volume</span>
+        </th>
+        <th scope="col" class="hovertips">Name
+            <span class="hovertipstext">hovertips text 3</span>
+        </th>
+        <th scope="col" class="hovertips">Profit
+            <span class="hovertipstext">hovertips text 4</span>
+        </th>
+        <th scope="col" class="hovertips">Price From
+            <span class="hovertipstext">hovertips text 5</span>
+        </th>
+        <th scope="col" class="hovertips">Price To
+            <span class="hovertipstext">hovertips text 6</span>
+        </th>
+        <th scope="col" class="hovertips">Diff
+            <span class="hovertipstext hovertips-left">hovertips text 7</span>
+        </th>
+        <th scope="col" class="hovertips">Day Vol To
+            <span class="hovertipstext hovertips-left">hovertips text 8</span>
+        </th>
+        <th scope="col" class="hovertips">Liq To
+            <span class="hovertipstext hovertips-left">hovertips text 9</span>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for log in logistics %}
+        <tr>
+            <td>{{ log.type_id }}</td>
+            <td>{{ log.packaged_volume }}</td>
+            <th scope="row">{{ log.name }}</th>
+            <td>{{ log.profit_from }}</td>
+            <td>
+                <script>document.write(({{ log.price_from }}).toLocaleString())</script>
+            </td>
+            <td>
+                <script>document.write(({{ log.price_to }}).toLocaleString())</script>
+            </td>
+            <td>
+                <script>document.write(({{ log.price_diff }}).toLocaleString())</script>
+            </td>
+            <td>{{ log.day_volume_to }}</td>
+            <td>{{ log.liquidity_to }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
 </table>
 
 </body>
