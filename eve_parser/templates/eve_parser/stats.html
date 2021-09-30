@@ -20,14 +20,14 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        {% for stats in statistics %}
+    {% for stats in statistics %}
+        <tr>
             <td>{{ stats.1 }}</td>
             <td>{{ stats.2 }}</td>
             <td>{{ stats.3 }}</td>
             <td>{{ stats.4 }}</td>
-        {% endfor %}
-    </tr>
+        </tr>
+    {% endfor %}
     </tbody>
 </table>
 
