@@ -79,12 +79,12 @@ form{
     margin: auto 0 0;
 }
 
-.tooltip {
+.hovertips {
     position: relative;
     cursor: pointer;
 }
 
-.tooltip .tooltiptext {
+.hovertips .hovertipstext {
     visibility: hidden;
     background-color: black;
     color: #fff;
@@ -100,11 +100,11 @@ form{
      если же все тултипы маленькие, то можно уменьшить*/
 }
 
-.tooltip:hover .tooltiptext {
+.hovertips:hover .hovertipstext {
     visibility: visible;
 }
 
-.tooltip .tooltiptext:after {
+.hovertips .hovertipstext:after {
     content: '';
     position: absolute;
     top: 100%;
@@ -115,11 +115,11 @@ form{
     border-color: black transparent transparent transparent;
 }
 
-.tooltip .tooltip-left{
+.hovertips .hovertips-left{
     transform: translateX(-115px);
 }
 
-.tooltip .tooltip-left:after{
+.hovertips .hovertips-left:after{
     right: 40px;
     left: unset;
 }
@@ -134,4 +134,8 @@ tr:nth-child(odd){
 
 .table{
     font-size: 18px;
+}
+
+.header a:hover span {
+    color: white;
 }
