@@ -1,25 +1,40 @@
 {% include "eve/header.html" %}
-    <title>Parser Stats</title>
+<title>Parser Stats</title>
 </head>
 
 <body>
 
 {% include "eve/menu.html" %}
 
-    <div class="row">
-        <div class="col"><b>Name</b></div>
-        <div class="col"><b>Region_id</b></div>
-        <div class="col"><b>Region_id_log</b></div>
-        <div class="col"><b>Parser Time</b></div>
-    </div>
-{% for stats in statistics %}
-    <div class="row">
-        <div class="col">{{ stats.1 }}</div>
-        <div class="col">{{ stats.2 }}</div>
-        <div class="col">{{ stats.3 }}</div>
-        <div class="col">{{ stats.4 }}</div>
-    </div>
-{% endfor %}
+<table class="table">
+    <thead>
+    <tr class="tr-header">
+        <th scope="col" class="hovertips">Name
+            <span class="hovertipstext">hovertips text Pac Volume</span>
+        </th>
+        <th scope="col" class="hovertips">Region_id
+            <span class="hovertipstext">hovertips text 3</span>
+        </th>
+        <th scope="col" class="hovertips">Region_id_log
+            <span class="hovertipstext">hovertips text 4</span>
+        </th>
+        <th scope="col" class="hovertips">Parser Time
+            <span class="hovertipstext">hovertips text 4</span>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        {% for stats in statistics %}
+            <td>{{ stats.1 }}</td>
+            <td>{{ stats.2 }}</td>
+            <td>{{ stats.3 }}</td>
+            <td>{{ stats.4 }}</td>
+        {% endfor %}
+    </tr>
+    </tbody>
+</table>
+
 </body>
 
 </html>
