@@ -52,7 +52,7 @@ def planing(request):
         region_from = "The Forge"
 
     if "region_to" not in request.GET:
-        region_to = "Pure Blind"
+        region_to = "Domain"
     else:
         region_to = request.GET["region_to"]
     try:
