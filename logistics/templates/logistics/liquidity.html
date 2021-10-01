@@ -1,5 +1,6 @@
 {% include "eve/header.html" %}
-<title>Liquidity</title>
+    <title>Eve market liquidity by region</title>
+    <meta name="Description" CONTENT="Very useful statistics that show which items are in great demand in the region">
 </head>
 
 <body>
@@ -49,7 +50,7 @@
     {% for liq in liquidity %}
         <tr>
             <td>{{ liq.type_id }}</td>
-            <th scope="row">{{ liq.name }}</th>
+            <th scope="row"><a target="_blank" href="https://evemarketer.com/regions/{{ region_selected }}/types/{{ liq.type_id }}">{{ liq.name }}</a></th>
             <td>
                 <script>document.write(({{ liq.day_turnover }}).toLocaleString())</script>
             </td>

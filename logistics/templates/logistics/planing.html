@@ -1,5 +1,6 @@
 {% include "eve/header.html" %}
-<title>Logistics planing</title>
+    <title>Logistic assistant in EVE</title>
+    <meta name="Description" CONTENT="The difference in the cost and turnover of items in the regions">
 </head>
 
 <body>
@@ -73,7 +74,7 @@
         <tr>
             <td>{{ log.type_id }}</td>
             <td>{{ log.packaged_volume }}</td>
-            <th scope="row">{{ log.name }}</th>
+            <th scope="row"><a target="_blank" href="https://evemarketer.com/regions/{{ region_from }}/types/{{ log.type_id }}">{{ log.name }}</a></th>
             <td>{{ log.profit_from }}</td>
             <td>
                 <script>document.write(({{ log.price_from }}).toLocaleString())</script>
