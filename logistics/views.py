@@ -58,8 +58,8 @@ def planing(request):
     try:
         region_id_to = Regions.objects.get(name=str(region_to)).region_id
     except models.ObjectDoesNotExist as e:
-        region_id_to = 10000023
-        region_to = "Pure Blind"
+        region_id_to = 10000043
+        region_to = "Domain"
 
     count_display = 0
     logistics_to_page = []
