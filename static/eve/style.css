@@ -139,3 +139,8 @@ tr:nth-child(odd){
 .header a:hover span {
     color: white;
 }
+
+.description {
+    text-align: center;
+    font-size: 20px;
+}
