@@ -38,7 +38,7 @@ def parse_types_description():
         dict_get_args = {"language": "en"}
         types_description_json = parser.evetech_req("/universe/types/" + str(item_type[0]), dict_get_args)
         print(types_description_json)
-        if "error" in types_description_json:
+        if "Type not found" in types_description_json:
             continue
         print("Item: " + str(item_type[0]))
         insert_in_base(json.loads(types_description_json))
