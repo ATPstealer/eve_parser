@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre&display=swap');
 
+html{
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'Gemunu Libre', sans-serif!important;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 .header {
@@ -124,6 +129,14 @@ form{
     left: unset;
 }
 
+.table-container{
+    position: relative;
+    overflow: auto;
+    padding-top: 100px;
+    margin-top: -100px;
+}
+
+
 tr:nth-child(odd){
     background-color: #c8c8c8;
 }
@@ -138,6 +151,17 @@ tr:nth-child(odd){
 
 .header a:hover span {
     color: white;
+}
+
+@media screen and (max-width: 768px){
+    .selects{
+        flex-direction: column;
+        padding: 0 10px;
+    }
+
+    th{
+        min-width: 115px;
+    }
 }
 
 .description {
