@@ -1,12 +1,14 @@
 {% include "eve/header.html" %}
-    <title>Eve market liquidity by region</title>
-    <meta name="Description" CONTENT="Very useful statistics that show which items are in great demand in the region">
+<title>Eve market liquidity by region</title>
+<meta name="Description" CONTENT="Very useful statistics that show which items are in great demand in the region">
 </head>
 
 <body>
 
 {% include "eve/menu.html" %}
-<div class="description">The project is written on python django. I am parsing the EVE market through the API and calculating more profitable items.</div>
+<div class="description">The project is written on python django. I am parsing the EVE market through the API and
+    calculating more profitable items.
+</div>
 <form class="selects" method="get" action="/logistics/liquidity/" id="region_form">
     <div class="form-item">
         <span>Liquidity on</span>
@@ -15,10 +17,11 @@
                 <option {% if region_selected == reg.0 %}selected{% endif %}
                         {% if reg.0 == "The Forge" or reg.0 == "Karan" or reg.0 == "Domain" or reg.0 == "Sinq Laison" or reg.0 == "Heimatar" or reg.0 == "Metropolis" %}
                         style="font-weight: bold;"{% endif %}>
-                    {{ reg.0 }}
-                </option>
+                    {{ reg.0 }} </option>
             {% endfor %}
         </select>
+    </div>
+    <div class="form-item">
     </div>
     <div class="form-item">
         <span>Last parse time</span>
@@ -26,7 +29,7 @@
     </div>
 </form>
 
-<div class="table-container">
+
 <table class="table">
     <thead>
     <tr class="tr-header">
@@ -50,7 +53,8 @@
     {% for liq in liquidity %}
         <tr>
             <td>{{ liq.type_id }}</td>
-            <th scope="row"><a target="_blank" href="https://evemarketer.com/types/{{ liq.type_id }}">{{ liq.name }}</a></th>
+            <th scope="row"><a target="_blank"
+                               href="https://evemarketer.com/types/{{ liq.type_id }}">{{ liq.name }}</a></th>
             <td>
                 <script>document.write(({{ liq.day_turnover }}).toLocaleString())</script>
             </td>
@@ -64,7 +68,7 @@
     {% endfor %}
     </tbody>
 </table>
-</div>
+
 
 </body>
 </html>

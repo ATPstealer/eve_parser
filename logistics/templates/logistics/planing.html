@@ -1,12 +1,14 @@
 {% include "eve/header.html" %}
-    <title>Logistic assistant in EVE</title>
-    <meta name="Description" CONTENT="The difference in the cost and turnover of items in the regions">
+<title>Logistic assistant in EVE</title>
+<meta name="Description" CONTENT="The difference in the cost and turnover of items in the regions">
 </head>
 
 <body>
 
 {% include "eve/menu.html" %}
-<div class="description">The project is written on python django. I am parsing the EVE market through the API and calculating more profitable items.</div>
+<div class="description">The project is written on python django. I am parsing the EVE market through the API and
+    calculating more profitable items.
+</div>
 <form class="selects" method="get" action="/logistics/planing/" id="region_form">
     <div class="form-item">
         <span>From</span>
@@ -74,7 +76,9 @@
         <tr>
             <td>{{ log.type_id }}</td>
             <td>{{ log.packaged_volume }}</td>
-            <th scope="row"><a target="_blank" href="https://evemarketer.com/types/{{ log.type_id }}">{{ log.name }}</a></th>
+            <th scope="row"><a target="_blank"
+                               href="https://evemarketer.com/types/{{ log.type_id }}">{{ log.name }}</a>
+            </th>
             <td>{{ log.profit_from }}</td>
             <td>
                 <script>document.write(({{ log.price_from }}).toLocaleString())</script>
