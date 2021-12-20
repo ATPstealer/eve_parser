@@ -12,5 +12,5 @@ python3 manage.py runscript parser_regions <br>
 python3 manage.py runscript parser_market <br>
 python3 manage.py runscript parser_types <br>
 python3 manage.py runscript parser_market_history --script-args 10000002<br>
-python3 manage.py runscript liquidity  <br>
+python3 manage.py runscript liquidity <br>
 python3 manage.py runscript logistics_planning --script-args  10000002 10000023 0.001 <br>
