@@ -81,7 +81,12 @@
                 <script>document.write(({{ liq.price_bay }}).toLocaleString())</script>
             </td>
             <td>
-                <script>document.write((  ({{ liq.price_sell }} / {{ liq.price_bay }})*100 - 100  ).toLocaleString())</script>
+                <script>
+                    if ({{ liq.price_sell }} * {{ liq.price_bay }}) {
+                       let procent = ({{ liq.price_sell }} / {{ liq.price_bay }})*100 - 100  ).toLocaleString()
+                    }
+                    document.write(procent)
+                </script>
             </td>
         </tr>
     {% endfor %}
