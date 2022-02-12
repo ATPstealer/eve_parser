@@ -82,7 +82,7 @@
             </td>
             <td>
                 <script>
-                    if ({{ liq.price_sell }} * {{ liq.price_bay }}) {
+                    if ({{ liq.price_sell }} * {{ liq.price_bay }} != 0) {
                         document.write(({{ liq.price_sell }} / {{ liq.price_bay }})*100 - 100  ).toLocaleString())
                     }
                 </script>
