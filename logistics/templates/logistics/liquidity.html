@@ -84,6 +84,8 @@
                 <script>
                     if ({{ liq.price_sell }} * {{ liq.price_bay }}) {
                         document.write((({{ liq.price_sell }} / {{ liq.price_bay }})*100 - 100  ).toLocaleString())
+                    } else {
+                        document.write("---")
                     }
                 </script>
             </td>
