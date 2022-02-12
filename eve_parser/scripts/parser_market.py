@@ -50,7 +50,7 @@ def insert_in_base(market_data, region):
 
 
 def clear_market():
-    orders_for_delete = Market.objects.filter(parse_time__lte=datetime.now(timezone.utc) - timedelta(days=1))
+    orders_for_delete = Market.objects.filter(parse_time__lte=datetime.now(timezone.utc) - timedelta(days=1.3))
     for order in orders_for_delete:
         print("Delete: " + str(order.order_id))
         order.delete()
