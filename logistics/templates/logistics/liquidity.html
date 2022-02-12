@@ -47,6 +47,10 @@
         <th scope="col" class="hovertips">Median price
             <span class="hovertipstext hovertips-left">Average price over 3 days</span>
         </th>
+        <th scope="col" class="hovertips">Sell
+        </th>
+        <th scope="col" class="hovertips">Bay
+        </th>
     </tr>
     </thead>
     <tbody>
@@ -63,6 +67,12 @@
             </td>
             <td>
                 <script>document.write(({{ liq.price }}).toLocaleString())</script>
+            </td>
+            <td>
+                <script>document.write(({{ liq.price_sell }}).toLocaleString())</script>
+            </td>
+            <td>
+                <script>document.write(({{ liq.price_bay }}).toLocaleString())</script>
             </td>
         </tr>
     {% endfor %}
