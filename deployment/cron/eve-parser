@@ -1,6 +1,6 @@
 # TIMEZONE: UTC
 # Everyday marker parse
-# 0 21 * * * root cd /root/eve_parser && python3 manage.py runscript parser_market
+0 21 * * * root cd /root/eve_parser && python3 manage.py runscript parser_market
 
 # Market history and liquidity every 2 days
 # Market history refresh every day at 11:00 UTC (14:00 MSK)
