@@ -1,5 +1,5 @@
 import operator
-from eve_parser.models import MarketHistory, TopTypes, Regions, Liquidity, Types, ParserDateStatus
+from eve_parser.models import MarketHistory, TopTypes, Regions, Liquidity, Types, ParserDateStatus, Market
 from datetime import datetime, timedelta
 from eve_parser.include.parser import Parser
 
@@ -48,12 +48,21 @@ def liquidity_calc(region_id, type_id, day_range, market_history):
 
 def insert_in_base(region_id, type_id, day_avg_volume, last_average_price, day_turnover):
     liq = list(Liquidity.objects.filter(region_id=region_id, type_id=type_id))
+    price_sell = check_price(region_id, type_id, 0)
+    price_bay = check_price(region_id, type_id, 1)
     if len(liq) < 1:
         liquidity = Liquidity.objects.create(
-            region_id=region_id, type_id=type_id, day_volume=day_avg_volume,
-            price=last_average_price, day_turnover=day_turnover)
+            region_id=region_id, type_id=type_id, day_volume=day_avg_volume, price=last_average_price,
+            day_turnover=day_turnover, price_bay=price_bay, price_sell=price_sell)
         liquidity.save()
     else:
         liquidity = Liquidity.objects.filter(region_id=region_id, type_id=type_id).update(
-            region_id=region_id, type_id=type_id, day_volume=day_avg_volume,
-            price=last_average_price, day_turnover=day_turnover)
+            region_id=region_id, type_id=type_id, day_volume=day_avg_volume, price=last_average_price,
+            day_turnover=day_turnover, price_bay=price_bay, price_sell=price_sell)
+
+
+def check_price(region_id, type_id, is_buy_order):
+    order = "-price" if is_buy_order else "price"
+    price_array = Market.objects.values_list("price").filter(region_id=region_id, type_id=type_id,
+                                                             is_buy_order=is_buy_order).order_by(order)
+    return price_array[0][0] if len(price_array) > 0 else 0

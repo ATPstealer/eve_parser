@@ -102,6 +102,8 @@ class Liquidity(models.Model):
     day_volume = models.FloatField()
     price = models.FloatField()
     day_turnover = models.FloatField()
+    price_bay = models.FloatField()
+    price_sell = models.FloatField()
 
 
 class LogisticsPlanning(models.Model):
