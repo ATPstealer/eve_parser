@@ -47,9 +47,6 @@
         <th scope="col" class="hovertips">Median price
             <span class="hovertipstext hovertips-left">Average price over 3 days</span>
         </th>
-        <th scope="col" class="hovertips">Min price
-            <span class="hovertipstext hovertips-left">Average price over 3 days</span>
-        </th>
     </tr>
     </thead>
     <tbody>
@@ -66,9 +63,6 @@
             </td>
             <td>
                 <script>document.write(({{ liq.price }}).toLocaleString())</script>
-            </td>
-            <td>
-                <script>document.write(({{ liq.min_price }}).toLocaleString())</script>
             </td>
         </tr>
     {% endfor %}
