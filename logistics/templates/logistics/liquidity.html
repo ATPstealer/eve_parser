@@ -51,6 +51,9 @@
         </th>
         <th scope="col" class="hovertips">Bay
         </th>
+        <th scope="col" class="hovertips">%
+        </th>
+
     </tr>
     </thead>
     <tbody>
@@ -73,6 +76,9 @@
             </td>
             <td>
                 <script>document.write(({{ liq.price_bay }}).toLocaleString())</script>
+            </td>
+            <td>
+                <script>document.write(({{ liq.price_sell * 100 - liq.price_sell * 100 - 100 }}).toLocaleString())</script>
             </td>
         </tr>
     {% endfor %}
