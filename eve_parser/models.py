@@ -43,7 +43,9 @@ class Market(models.Model):
     parse_time = models.DateTimeField(
         auto_now=True
     )
-    region_id = models.IntegerField()
+    region_id = models.IntegerField(
+        db_index=True
+    )
 
     duration = models.IntegerField()
     is_buy_order = models.BigIntegerField()
@@ -54,12 +56,16 @@ class Market(models.Model):
         unique=True,
         db_index=True
     )
-    price = models.FloatField()
+    price = models.FloatField(
+        db_index=True
+    )
     range = models.CharField(
         max_length=20
     )
     system_id = models.BigIntegerField()
-    type_id = models.IntegerField()
+    type_id = models.IntegerField(
+        db_index=True
+    )
     volume_remain = models.BigIntegerField()
     volume_total = models.BigIntegerField()
 
