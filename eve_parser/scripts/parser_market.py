@@ -37,7 +37,7 @@ def insert_in_base(market_data, region):
             market = Market.objects.create(
                 order_id=order['order_id'], region_id=region, duration=order['duration'],
                 is_buy_order=order['is_buy_order'], issued=order['issued'], location_id=order['location_id'],
-                min_volume=order['min_volume'], price=order['price'], range=order['range'],system_id=order['system_id'],
+                min_volume=order['min_volume'], price=order['price'], range=order['range'], system_id=order['system_id'],
                 type_id=order['type_id'], volume_total=order['volume_total'], volume_remain=order['volume_remain'])
             market.save()
         else:

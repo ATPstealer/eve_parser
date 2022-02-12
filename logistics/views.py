@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from eve_parser.models import Liquidity, Types, Regions, LogisticsPlanning, ParserDateStatus
+from eve_parser.models import Liquidity, Types, Regions, LogisticsPlanning, ParserDateStatus, Market
 from logistics.models import models
 from config import Config
 from datetime import datetime
@@ -26,8 +26,12 @@ def liquidity(request):
         if count_display > config.counts_on_page:
             break
         name = Types.objects.values_list("name").filter(type_id=liq[0])
+        market_low_price = Market.objects.values_list("price").filter(type_id=liq[0], region_id=int(region_id),
+                                                                      is_buy_order=0).order_by("-price")
+
         liquidity_to_page.append({'name': name[0][0], 'type_id': liq[0], 'day_volume': "%.2f" % liq[1],
-                                  'day_turnover': "%.2f" % liq[2], 'price': "%.2f" % liq[3]})
+                                  'day_turnover': "%.2f" % liq[2], 'price': "%.2f" % liq[3],
+                                  'min_price': market_low_price[0][0]})
 
     regions = Regions.objects.values_list("name", "region_id").order_by("region_id")
     parse_time = ParserDateStatus.objects.filter(parser_name="Liquidity calculation", region_id=region_id)

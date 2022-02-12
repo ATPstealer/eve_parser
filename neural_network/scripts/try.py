@@ -55,6 +55,7 @@ def build_model(market_data):
     model.add(layers.Dense(32, activation='relu'))
     model.add(layers.Dense(1))
     model.compile(optimizer='rmsprop', loss='mse', metrics=['mae'])
+
     model.summary()
     print(model.input_shape)
     return model
