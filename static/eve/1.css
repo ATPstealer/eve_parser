@@ -129,13 +129,12 @@ form{
     left: unset;
 }
 
-.table-container{
+.table-wrapper{
     position: relative;
     overflow: auto;
     padding-top: 100px;
     margin-top: -100px;
 }
-
 
 tr:nth-child(odd){
     background-color: #c8c8c8;
@@ -143,11 +142,6 @@ tr:nth-child(odd){
 
 .tr-header{
     background-color: white!important;
-}
-
-.table-wrapper{
-    position: relative;
-    overflow: auto;
 }
 
 .table{
