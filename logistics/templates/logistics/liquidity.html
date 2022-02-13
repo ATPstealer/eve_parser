@@ -30,37 +30,38 @@
 </form>
 
 
-<table class="table">
-    <thead>
-    <tr class="tr-header">
-        <th scope="col" class="hovertips">Type_id
-            <span class="hovertipstext">An Eve item type ID</span>
-        </th>
-        <th scope="col" class="hovertips">Name
-        </th>
-        <th scope="col" class="hovertips">Day turnover, millions
-            <span class="hovertipstext">Average turnover of ISK by item per month in this region</span>
-        </th>
-        <th scope="col" class="hovertips">Day volume
-            <span class="hovertipstext">Average day volume by item per month in this region</span>
-        </th>
-        <th scope="col" class="hovertips">Median price
-            <span class="hovertipstext hovertips">Average price over 3 days</span>
-        </th>
-        <th scope="col" class="hovertips">Sell
-            <span class="hovertipstext hovertips">Sell order price</span>
-        </th>
-        <th scope="col" class="hovertips">Bay
-            <span class="hovertipstext hovertips-left">Bay order price</span>
-        </th>
-        <th scope="col" class="hovertips">%
-            <span class="hovertipstext hovertips-left">Traider profit</span>
-        </th>
+<div class="table-wrapper">
+    <table class="table">
+        <thead>
+        <tr class="tr-header">
+            <th scope="col" class="hovertips">Type_id
+                <span class="hovertipstext">An Eve item type ID</span>
+            </th>
+            <th scope="col" class="hovertips">Name
+            </th>
+            <th scope="col" class="hovertips">Day turnover, millions
+                <span class="hovertipstext">Average turnover of ISK by item per month in this region</span>
+            </th>
+            <th scope="col" class="hovertips">Day volume
+                <span class="hovertipstext">Average day volume by item per month in this region</span>
+            </th>
+            <th scope="col" class="hovertips">Median price
+                <span class="hovertipstext hovertips">Average price over 3 days</span>
+            </th>
+            <th scope="col" class="hovertips">Sell
+                <span class="hovertipstext hovertips">Sell order price</span>
+            </th>
+            <th scope="col" class="hovertips">Bay
+                <span class="hovertipstext hovertips-left">Bay order price</span>
+            </th>
+            <th scope="col" class="hovertips">%
+                <span class="hovertipstext hovertips-left">Traider profit</span>
+            </th>
 
-    </tr>
-    </thead>
-    <tbody>
-    {% for liq in liquidity %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for liq in liquidity %}
         <tr>
             <td>{{ liq.type_id }}</td>
             <th scope="row"><a target="_blank"
@@ -90,9 +91,10 @@
                 </script>
             </td>
         </tr>
-    {% endfor %}
-    </tbody>
-</table>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 
 </body>
