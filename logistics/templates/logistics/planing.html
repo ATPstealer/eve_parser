@@ -40,39 +40,40 @@
 </form>
 
 
-<table class="table">
-    <thead>
-    <tr class="tr-header">
-        <th scope="col" class="hovertips">Type_id
-            <span class="hovertipstext">An Eve item type ID</span>
-        </th>
-        <th scope="col" class="hovertips">Pac Volume
-            <span class="hovertipstext">Packaged volume</span>
-        </th>
-        <th scope="col" class="hovertips">Name
-        </th>
-        <th scope="col" class="hovertips">Profit
-            <span class="hovertipstext">Average profit over day (Inaccurate metric)</span>
-        </th>
-        <th scope="col" class="hovertips">Price From
-            <span class="hovertipstext">Price in {{ region_from_selected }} </span>
-        </th>
-        <th scope="col" class="hovertips">Price To
-            <span class="hovertipstext">Price in {{ region_to_selected }} </span>
-        </th>
-        <th scope="col" class="hovertips">Diff
-            <span class="hovertipstext">Price difference between {{ region_to_selected }} and {{ region_from_selected }}  </span>
-        </th>
-        <th scope="col" class="hovertips">Day Vol To
-            <span class="hovertipstext hovertips-left">Average day volume by item per month in {{ region_to_selected }}</span>
-        </th>
-        <th scope="col" class="hovertips">Liq To
-            <span class="hovertipstext hovertips-left">Average day volume * avarage day price in {{ region_to_selected }}</span>
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for log in logistics %}
+<div class="table-wrapper">
+    <table class="table">
+        <thead>
+        <tr class="tr-header">
+            <th scope="col" class="hovertips">Type_id
+                <span class="hovertipstext">An Eve item type ID</span>
+            </th>
+            <th scope="col" class="hovertips">Pac Volume
+                <span class="hovertipstext">Packaged volume</span>
+            </th>
+            <th scope="col" class="hovertips">Name
+            </th>
+            <th scope="col" class="hovertips">Profit
+                <span class="hovertipstext">Average profit over day (Inaccurate metric)</span>
+            </th>
+            <th scope="col" class="hovertips">Price From
+                <span class="hovertipstext">Price in {{ region_from_selected }} </span>
+            </th>
+            <th scope="col" class="hovertips">Price To
+                <span class="hovertipstext">Price in {{ region_to_selected }} </span>
+            </th>
+            <th scope="col" class="hovertips">Diff
+                <span class="hovertipstext">Price difference between {{ region_to_selected }} and {{ region_from_selected }}  </span>
+            </th>
+            <th scope="col" class="hovertips">Day Vol To
+                <span class="hovertipstext hovertips-left">Average day volume by item per month in {{ region_to_selected }}</span>
+            </th>
+            <th scope="col" class="hovertips">Liq To
+                <span class="hovertipstext hovertips-left">Average day volume * avarage day price in {{ region_to_selected }}</span>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for log in logistics %}
         <tr>
             <td>{{ log.type_id }}</td>
             <td>{{ log.packaged_volume }}</td>
@@ -92,9 +93,10 @@
             <td>{{ log.day_volume_to }}</td>
             <td>{{ log.liquidity_to }}</td>
         </tr>
-    {% endfor %}
-    </tbody>
-</table>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>

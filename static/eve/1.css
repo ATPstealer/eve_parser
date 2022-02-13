@@ -145,7 +145,10 @@ tr:nth-child(odd){
     background-color: white!important;
 }
 
-
+.table-wrapper{
+    position: relative;
+    overflow: auto;
+}
 
 .table{
     font-size: 18px;
@@ -163,5 +166,9 @@ tr:nth-child(odd){
 
     th{
         min-width: 115px;
+    }
+
+    .header a {
+        font-size: 25px;
     }
 }
