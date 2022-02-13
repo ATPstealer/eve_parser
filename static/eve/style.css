@@ -129,7 +129,7 @@ form{
     left: unset;
 }
 
-.table-container{
+.table-wrapper{
     position: relative;
     overflow: auto;
     padding-top: 100px;
@@ -161,6 +161,10 @@ tr:nth-child(odd){
 
     th{
         min-width: 115px;
+    }
+
+    .header a {
+        font-size: 25px;
     }
 }
 
