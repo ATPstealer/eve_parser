@@ -66,7 +66,7 @@ def planing(request):
     if region_id_from < region_id_to:
         logistics_planing_array = LogisticsPlanning.objects.values_list(
             "type_id", "price_from", "price_to", "price_diff", "liquidity_from", "liquidity_to", "profit_from",
-            "packaged_volume", "day_volume_to")\
+            "packaged_volume", "day_volume_to", "price_sell_from", "price_sell_to")\
             .filter(region_id_from=int(region_id_from), region_id_to=int(region_id_to)).order_by("-profit_from")
         for log in logistics_planing_array:
             count_display += 1
@@ -77,12 +77,13 @@ def planing(request):
                                       'price_to': "%.2f" % log[2], 'price_diff': "%.2f" % log[3],
                                       'liquidity_from': "%.2f" % log[4], 'packaged_volume': "%.2f" % log[7],
                                       'liquidity_to': "%.2f" % log[5], 'profit_from': "%.2f" % log[6],
-                                      'day_volume_to': "%.2f" % log[8]})
+                                      'day_volume_to': "%.2f" % log[8], 'price_sell_from': "%.2f" % log[9],
+                                      'price_sell_to': "%.2f" % log[10]})
     else:
         # switch from and to
         logistics_planing_array = LogisticsPlanning.objects.values_list(
             "type_id", "price_from", "price_to", "price_diff", "liquidity_from", "liquidity_to", "profit_to",
-            "packaged_volume", "day_volume_from")\
+            "packaged_volume", "day_volume_from", "price_sell_to", "price_sell_from")\
             .filter(region_id_from=int(region_id_to), region_id_to=int(region_id_from)).order_by("-profit_to")
         for log in logistics_planing_array:
             count_display += 1
@@ -93,7 +94,8 @@ def planing(request):
                                       'price_to': "%.2f" % log[1], 'price_diff': "%.2f" % (-1 * log[3]),
                                       'liquidity_from': "%.2f" % log[5], 'packaged_volume': "%.2f" % log[7],
                                       'liquidity_to': "%.2f" % log[4], 'profit_from': "%.2f" % log[6],
-                                      'day_volume_to': "%.2f" % log[8]})
+                                      'day_volume_to': "%.2f" % log[8], 'price_sell_from': "%.2f" % log[9],
+                                      'price_sell_to': "%.2f" % log[10]})
     print(logistics_planing_array)
     regions = Regions.objects.values_list("name", "region_id").order_by("region_id")
     parse_time = ParserDateStatus.objects.filter(parser_name="Calculate logistic", region_id=region_id_from, region_id_log=region_id_to)

@@ -55,13 +55,19 @@
             <th scope="col" class="hovertips">Profit
                 <span class="hovertipstext">Average profit over day (Inaccurate metric)</span>
             </th>
-            <th scope="col" class="hovertips">Price From
+            <th scope="col" class="hovertips">Sell Price From
+                <span class="hovertipstext">Sell price in {{ region_from_selected }} </span>
+            </th>
+            <th scope="col" class="hovertips">Sell Price To
+                <span class="hovertipstext">Sell price in {{ region_to_selected }} </span>
+            </th>
+            <th scope="col" class="hovertips">Avarege Price From
                 <span class="hovertipstext">Price in {{ region_from_selected }} </span>
             </th>
-            <th scope="col" class="hovertips">Price To
+            <th scope="col" class="hovertips">Avarege Price To
                 <span class="hovertipstext">Price in {{ region_to_selected }} </span>
             </th>
-            <th scope="col" class="hovertips">Diff
+            <th scope="col" class="hovertips">Diff Avarege Price
                 <span class="hovertipstext">Price difference between {{ region_to_selected }} and {{ region_from_selected }}  </span>
             </th>
             <th scope="col" class="hovertips">Day Vol To
@@ -81,6 +87,12 @@
                                href="https://evemarketer.com/types/{{ log.type_id }}">{{ log.name }}</a>
             </th>
             <td>{{ log.profit_from }}</td>
+            <td>
+                <script>document.write(({{ log.price_sell_from }}).toLocaleString())</script>
+            </td>
+            <td>
+                <script>document.write(({{ log.price_sell_to }}).toLocaleString())</script>
+            </td>
             <td>
                 <script>document.write(({{ log.price_from }}).toLocaleString())</script>
             </td>
