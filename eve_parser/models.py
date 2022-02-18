@@ -132,7 +132,10 @@ class LogisticsPlanning(models.Model):
     day_volume_to = models.FloatField()
     profit_from = models.FloatField()
     profit_to = models.FloatField()
-
+    price_bay_from = models.FloatField()
+    price_sell_from = models.FloatField()
+    price_bay_to = models.FloatField()
+    price_sell_to = models.FloatField()
 
 class ParserDateStatus(models.Model):
     parser_name = models.CharField(
