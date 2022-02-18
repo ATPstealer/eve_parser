@@ -137,6 +137,7 @@ class LogisticsPlanning(models.Model):
     price_bay_to = models.FloatField()
     price_sell_to = models.FloatField()
 
+
 class ParserDateStatus(models.Model):
     parser_name = models.CharField(
         max_length=50,

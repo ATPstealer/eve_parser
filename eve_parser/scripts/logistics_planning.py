@@ -1,6 +1,5 @@
-from eve_parser.models import TopTypes, Regions, Types, Liquidity, LogisticsPlanning, ParserDateStatus
+from eve_parser.models import TopTypes, Regions, Types, Liquidity, LogisticsPlanning, ParserDateStatus, Market
 from eve_parser.models import models
-from datetime import datetime
 from eve_parser.include.parser import Parser
 
 
@@ -39,6 +38,11 @@ def calculate_logistics(region_from, region_to, day_turnover_threshold):
         if liquidity_to.day_turnover >= day_turnover_threshold and liquidity_from.day_turnover >= day_turnover_threshold:
             log = list(LogisticsPlanning.objects.filter(type_id=item_type[0], region_id_from=region_from,
                                                         region_id_to=region_to))
+            price_bay_from = check_price(region_from, type_id, 1)
+            price_sell_from = check_price(region_from, type_id, 0)
+            price_bay_to = check_price(region_to, type_id, 1)
+            price_sell_to = check_price(region_to, type_id, 0)
+
             if len(log) < 1:
                 logistics_planning = LogisticsPlanning.objects.create(
                     type_id=item_type[0], packaged_volume=item_describe.packaged_volume, region_id_from=region_from, region_id_to=region_to,
@@ -46,7 +50,8 @@ def calculate_logistics(region_from, region_to, day_turnover_threshold):
                     liquidity_from=liquidity_from.day_turnover, liquidity_to=liquidity_to.day_turnover,
                     day_volume_from=liquidity_from.day_volume, day_volume_to=liquidity_to.day_volume,
                     profit_from=float((liquidity_from.price - liquidity_to.price) * (-1) * liquidity_to.day_volume) / 1000000,
-                    profit_to=float((liquidity_from.price - liquidity_to.price) * liquidity_from.day_volume) / 1000000)
+                    profit_to=float((liquidity_from.price - liquidity_to.price) * liquidity_from.day_volume) / 1000000,
+                    price_bay_from=price_bay_from, price_sell_from=price_sell_from, price_bay_to=price_bay_to, price_sell_to=price_sell_to)
                 logistics_planning.save()
             else:
                 logistics_planning = LogisticsPlanning.objects.filter(type_id=item_type[0], region_id_from=region_from,
@@ -56,7 +61,8 @@ def calculate_logistics(region_from, region_to, day_turnover_threshold):
                     liquidity_from=liquidity_from.day_turnover, liquidity_to=liquidity_to.day_turnover,
                     day_volume_from=liquidity_from.day_volume, day_volume_to=liquidity_to.day_volume,
                     profit_from=float((liquidity_from.price - liquidity_to.price) * (-1) * liquidity_to.day_volume) / 1000000,
-                    profit_to=float((liquidity_from.price - liquidity_to.price) * liquidity_from.day_volume) / 1000000)
+                    profit_to=float((liquidity_from.price - liquidity_to.price) * liquidity_from.day_volume) / 1000000,
+                    price_bay_from=price_bay_from, price_sell_from=price_sell_from, price_bay_to=price_bay_to, price_sell_to=price_sell_to)
         else:
             LogisticsPlanning.objects.filter(type_id=item_type[0], region_id_from=region_from,
                                              region_id_to=region_to).delete()
@@ -83,3 +89,10 @@ def check_need(region_from, region_to):
         return False
     else:
         return True
+
+
+def check_price(region_id, type_id, is_buy_order):
+    order = "-price" if is_buy_order else "price"
+    price_array = Market.objects.values_list("price").filter(region_id=region_id, type_id=type_id,
+                                                             is_buy_order=is_buy_order).order_by(order)
+    return price_array[0][0] if len(price_array) > 0 else 0
