@@ -38,10 +38,10 @@ def calculate_logistics(region_from, region_to, day_turnover_threshold):
         if liquidity_to.day_turnover >= day_turnover_threshold and liquidity_from.day_turnover >= day_turnover_threshold:
             log = list(LogisticsPlanning.objects.filter(type_id=item_type[0], region_id_from=region_from,
                                                         region_id_to=region_to))
-            price_bay_from = check_price(region_from, type_id, 1)
-            price_sell_from = check_price(region_from, type_id, 0)
-            price_bay_to = check_price(region_to, type_id, 1)
-            price_sell_to = check_price(region_to, type_id, 0)
+            price_bay_from = check_price(region_from, item_type[0], 1)
+            price_sell_from = check_price(region_from, item_type[0], 0)
+            price_bay_to = check_price(region_to, item_type[0], 1)
+            price_sell_to = check_price(region_to, item_type[0], 0)
 
             if len(log) < 1:
                 logistics_planning = LogisticsPlanning.objects.create(
