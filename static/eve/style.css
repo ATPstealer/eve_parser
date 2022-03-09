@@ -66,6 +66,8 @@ form{
     display: flex;
     gap: 30px;
     justify-content: center;
+    z-index: 2;
+    position: relative;
 }
 
 .form-item {
@@ -131,9 +133,10 @@ form{
 
 .table-wrapper{
     position: relative;
+    z-index: 1;
     overflow: auto;
-    padding-top: 0px;
-    margin-top: 0px;
+    padding-top: 100px;
+    margin-top: -100px;
 }
 
 
@@ -171,4 +174,8 @@ tr:nth-child(odd){
 .description {
     text-align: center;
     font-size: 20px;
+}
+
+.long{
+    min-width: 135px;
 }
