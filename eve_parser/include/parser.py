@@ -20,7 +20,7 @@ class Parser:
             except requests.exceptions.RequestException as e:
                 print("request can't receive data: %s" % e)
             else:
-                if r.status_code == 200 or r.status_code == 404 or \
+                if r.status_code == 200 or r.status_code == 404 or r.status_code == 400 or\
                         r.status_code == 500 and "Undefined 404 response" in r.text:
                     return r.text
                 elif r.status_code == 420:
