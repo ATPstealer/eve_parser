@@ -20,7 +20,7 @@ def parse_region():
             if region == exist_region[0]:
                 exist = 1
                 break
-        if exist == 0:
+        if exist == 0 and region < 11000000:
             regions = Regions.objects.create(region_id=region, constellations="")
             regions.save()
 
