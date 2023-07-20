@@ -23,7 +23,7 @@ def liquidity(request):
 
     liquidity_array = Liquidity.objects.values_list("type_id", "day_volume", "day_turnover", "price", "price_sell",
                                                     "price_bay"). \
-        filter(region_id=int(region_id)).order_by("-day_turnover")
+        filter(region_id=int(region_id)).order_by("-day_turnover")[:10] #delete
     count_display = 0
     liquidity_to_page = []
     for liq in liquidity_array:
@@ -128,11 +128,11 @@ def exel_liquidity(request):
         region = "The Forge"
 
     file_name = 'liq_' + region + '.xlsx'
-    file_path = '' + file_name
+    file_path = '/tmp/' + file_name
 
     liquidity_array = Liquidity.objects.values_list("type_id", "day_volume", "day_turnover", "price", "price_sell",
                                                     "price_bay"). \
-                          filter(region_id=int(region_id)).order_by("-day_turnover")[:8001]
+                          filter(region_id=int(region_id)).order_by("-day_turnover")[:10]
     liquidity_to_page = []
     for liq in liquidity_array:
         name = Types.objects.values_list("name").filter(type_id=liq[0])
@@ -172,14 +172,14 @@ def exel_planing(request):
         region_to = "Domain"
 
     file_name = 'plan_' + region_from + '_' + region_to + '.xlsx'
-    file_path = '' + file_name
+    file_path = '/tmp/' + file_name
 
     logistics_to_page = []
     if region_id_from < region_id_to:
         logistics_planing_array = LogisticsPlanning.objects.values_list(
             "type_id", "price_from", "price_to", "price_diff", "liquidity_from", "liquidity_to", "profit_from",
             "packaged_volume", "day_volume_to", "price_sell_from", "price_sell_to") \
-            .filter(region_id_from=int(region_id_from), region_id_to=int(region_id_to)).order_by("-profit_from")[:8001]
+            .filter(region_id_from=int(region_id_from), region_id_to=int(region_id_to)).order_by("-profit_from")[:10]
         for log in logistics_planing_array:
             name = Types.objects.values_list("name").filter(type_id=log[0])
             logistics_to_page.append({'name': name[0][0], 'type_id': log[0], 'price_from': "%.2f" % log[1],
@@ -193,7 +193,7 @@ def exel_planing(request):
         logistics_planing_array = LogisticsPlanning.objects.values_list(
             "type_id", "price_from", "price_to", "price_diff", "liquidity_from", "liquidity_to", "profit_to",
             "packaged_volume", "day_volume_from", "price_sell_to", "price_sell_from") \
-            .filter(region_id_from=int(region_id_to), region_id_to=int(region_id_from)).order_by("-profit_to")[:8001]
+            .filter(region_id_from=int(region_id_to), region_id_to=int(region_id_from)).order_by("-profit_to")[:10]
         for log in logistics_planing_array:
             name = Types.objects.values_list("name").filter(type_id=log[0])
             logistics_to_page.append({'name': name[0][0], 'type_id': log[0], 'price_from': "%.2f" % log[2],
