@@ -141,7 +141,6 @@ def exel_liquidity(request):
              'price': "%.2f" % liq[3], 'price_sell': liq[4], 'price_bay': liq[5]})
 
     df = pd.DataFrame(liquidity_to_page)
-    print(df)
     df.to_excel(file_path)
 
     response = FileResponse(open(file_path, 'rb'))
@@ -205,7 +204,6 @@ def exel_planing(request):
                                       'price_sell_to': "%.2f" % log[10]})
 
     df = pd.DataFrame(logistics_to_page)
-    print(df)
     df.to_excel(file_path)
 
     response = FileResponse(open(file_path, 'rb'))
