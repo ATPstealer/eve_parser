@@ -6,5 +6,8 @@ db.sqlite3
 .idea/
 venv/
 __pycache__/
+eve_parser/migrations
+logistics/migrations
+neural_network/migrations
 .git
 eve/settings_secrets.py
